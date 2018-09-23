@@ -1,0 +1,43 @@
+{
+    "name": "do-while/contao-pdf-nc-attachment-bundle",
+    "description": "Add a generated PDF document to the mail attachments",
+    "keywords": ["contao", "notification", "pdf" ],
+    "type": "contao-bundle",
+    "homepage": "https://www.softleister.de",
+    "license": "LGPL-3.0-or-later",
+    "authors": [{
+        "name": "Softleister - Hagen Klemp",
+        "homepage": "https://www.softleister.de",
+        "role": "Developer"
+    }],
+    "support": {
+        "issues": "https://github.com/do-while/contao-pdf-nc-attachment-bundle/issues",
+        "wiki": "https://github.com/do-while/contao-pdf-nc-attachment-bundle/wiki",
+        "source": "https://github.com/do-while/contao-pdf-nc-attachment-bundle"
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "contao/core-bundle": "~4.4",
+        "menatwork/contao-multicolumnwizard": "^3.3",
+        "terminal42/notification_center": "^1.4",
+        "codefog/contao-haste":"^4.14.1",
+        "setasign/fpdi-tcpdf": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Softleister\\PdfncattachmentBundle\\": "src/"
+        },
+        "classmap": [
+            "src/Resources/contao/"
+        ],
+        "exclude-from-classmap": [
+            "src/Resources/contao/config/",
+            "src/Resources/contao/dca/",
+            "src/Resources/contao/docs/",
+            "src/Resources/contao/languages/"
+        ]
+    },
+    "extra": {
+		"contao-manager-plugin": "Softleister\\PdfncattachmentBundle\\ContaoManager\\Plugin"
+    }
+}
