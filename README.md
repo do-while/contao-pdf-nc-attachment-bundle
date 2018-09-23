@@ -21,7 +21,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 ```
 
 ## Documentation
-[Deutsches Handbuch](http://www.softleister.de/files/manuals/contao-pdf-na-attachment-bundle/Anleitung_contao-pdfnc-attachment-bundle.pdf)<br>
+[Deutsches Handbuch](http://www.softleister.de/files/manuals/contao-pdf-nc-attachment-bundle/Anleitung_contao-pdfnc-attachment-bundle.pdf)<br>
 [English manual](http://www.softleister.de/files/manuals/contao-pdf-nc-attachment-bundle/Manual_contao-pdf-nc-attachment-bundle.pdf)
 
 
