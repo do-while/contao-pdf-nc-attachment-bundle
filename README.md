@@ -26,6 +26,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
+* 1.0.4<br>Freigabedatum: 2018-10-19<br>1) PDF-Anhang jetzt in allen Benachrichtigungen verfügbar<br>2) In der Dateinamenergänzung werden auch SimpleTokens umgewandelt
 * 1.0.0<br>Freigabedatum: 2018-09-23<br>Version für Contao ab Version 4.4 LTS
 
 **Problem melden | *Report Problem*:**<br>per E-Mail | *via Email*: licence@softleister.de

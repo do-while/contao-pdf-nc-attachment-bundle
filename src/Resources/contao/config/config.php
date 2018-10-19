@@ -19,28 +19,16 @@ $GLOBALS['BE_MOD']['notification_center']['nc_gateways']['testpdf']    = array('
 /**
  * Hooks
  */
-$GLOBALS['TL_HOOKS']['sendNotificationMessage'][] = array('Softleister\Pdfncattachment\pdfNcAttachmantHooks', 'execute');
+$GLOBALS['TL_HOOKS']['sendNotificationMessage'][] = array('Softleister\Pdfncattachment\pdfNcAttachmentHooks', 'execute');
 
 
 /**
- * Attachment-Token für Notifications hinzufügen
+ * Attachment-Token für alle Notifications hinzufügen
  */
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['core_form']['email_text'][] = 'pdfnc_document';
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['core_form']['email_html'][] = 'pdfnc_document';
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['core_form']['attachment_tokens'][] = 'pdfnc_attachment';
-
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_registration']['email_text'][] = 'pdfnc_document';
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_registration']['email_html'][] = 'pdfnc_document';
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_registration']['attachment_tokens'][] = 'pdfnc_attachment';
-
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_activation']['email_text'][] = 'pdfnc_document';
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_activation']['email_html'][] = 'pdfnc_document';
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_activation']['attachment_tokens'][] = 'pdfnc_attachment';
-
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_personaldata']['email_text'][] = 'pdfnc_document';
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_personaldata']['email_html'][] = 'pdfnc_document';
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_personaldata']['attachment_tokens'][] = 'pdfnc_attachment';
-
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_password']['email_text'][] = 'pdfnc_document';
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_password']['email_html'][] = 'pdfnc_document';
-$GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE']['contao']['member_password']['attachment_tokens'][] = 'pdfnc_attachment';
+foreach( $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'] as $vendor=>$app ) {
+    foreach( $app as $noti=>$tok ) {
+        $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'][$vendor][$noti]['email_text'][] = 'pdfnc_document';
+        $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'][$vendor][$noti]['email_html'][] = 'pdfnc_document';
+        $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'][$vendor][$noti]['attachment_tokens'][] = 'pdfnc_attachment';
+    }
+}

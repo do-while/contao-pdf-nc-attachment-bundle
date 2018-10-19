@@ -13,9 +13,9 @@ namespace Softleister\Pdfncattachment;
 require_once( TL_ROOT . '/vendor/do-while/contao-pdf-nc-attachment-bundle/src/Resources/contao/classes/pdfnc_helper.php' );
 
 //-----------------------------------------------------------------
-//  pdfNcAttachmantHooks:    Ausgabe des PDF
+//  pdfNcAttachmentHooks:    Ausgabe des PDF
 //-----------------------------------------------------------------
-class pdfNcAttachmantHooks extends \Backend
+class pdfNcAttachmentHooks extends \Backend
 {
     protected   $arrProtectflags = array('modify','extract','print','print-high','copy','annot-forms','fill-forms');
 
@@ -27,7 +27,8 @@ class pdfNcAttachmantHooks extends \Backend
         if( $objMessage->gateway_type !== 'email' ) return true;        // nur für den Gateway-Typ "email"
         if( $objGatewayModel->pdfnc_on != 1 ) return true;              // "PDF-Formular ausfüllen" inaktiv
 
-        $filename = standardize(\StringUtil::restoreBasicEntities($objMessage->title)) . $this->replaceInsertTags($objGatewayModel->pdfnc_fileext, false);
+        $filename = standardize(\StringUtil::restoreBasicEntities($objMessage->title)) . \Haste\Util\StringUtil::recursiveReplaceTokensAndTags( $objGatewayModel->pdfnc_fileext, $arrTokens );
+        
         $savepath = \FilesModel::findByUuid($objGatewayModel->pdfnc_savepath)->path;
         if( file_exists(TL_ROOT . '/' . $savepath . '/' . $filename . '.pdf') ) {
             $i = 2;
