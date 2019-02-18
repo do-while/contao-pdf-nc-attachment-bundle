@@ -26,7 +26,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
-* 2.0.0<br>Freigabedatum: 2019-02-18<br>1) Einbindung von Bilddaten aus Dateiverwaltung, Upload oder einem DataStream<br>2) Einbindung von QR-Codes<br>Überschreiben der Standard-Schreibfarbe für einzelne Elemente
+* 2.0.0<br>Freigabedatum: 2019-02-18<br>1) Einbindung von Bilddaten aus Dateiverwaltung, Upload oder einem DataStream<br>2) Einbindung von QR-Codes<br>3) Überschreiben der Standard-Schreibfarbe für einzelne Elemente
 * 1.0.4<br>Freigabedatum: 2018-10-19<br>1) PDF-Anhang jetzt in allen Benachrichtigungen verfügbar<br>2) In der Dateinamenergänzung werden auch SimpleTokens umgewandelt
 * 1.0.0<br>Freigabedatum: 2018-09-23<br>Version für Contao ab Version 4.4 LTS
 
