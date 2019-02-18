@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018, Softleister
+ * @copyright  Copyright (c) 2018-2019, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    LGPL
  */
@@ -93,7 +93,7 @@ $GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_textcolor'] = array (
     'default'       => '000ac0',
     'inputType'     => 'text',
     'eval'          => array('maxlength'=>6, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard', 'style'=>'width:138px'),
-    'sql'           => "varchar(64) NOT NULL default ''"
+    'sql'           => "varchar(8) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_title'] = array (

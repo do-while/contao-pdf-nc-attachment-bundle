@@ -21,6 +21,7 @@
         "menatwork/contao-multicolumnwizard": "^3.3",
         "terminal42/notification_center": "^1.4",
         "codefog/contao-haste":"^4.14.1",
+        "tecnickcom/tcpdf": "^6.2.22",
         "setasign/fpdi-tcpdf": "^2.0"
     },
     "autoload": {

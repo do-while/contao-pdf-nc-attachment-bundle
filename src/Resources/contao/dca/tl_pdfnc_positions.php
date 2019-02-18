@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018, Softleister
+ * @copyright  Copyright (c) 2018-2019, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    LGPL
  */
@@ -108,8 +108,33 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{pdfnc_legend},textitems;'
+		'__selector__'                => array('type','pictype'),
+        'default'                     => '{type_legend},type;'
+                                        .'{publish_legend},published',
+
+        'text'                        => '{type_legend},type;'
+                                        .'{pdfnc_legend},textitems,textcolor;'
                                         .'{attr_legend},page,posxy,borderright,align,fontsize,fontstyle;'
+                                        .'{publish_legend},published',
+
+        'picfile'                     => '{type_legend},type;'
+                                        .'{attr_legend},page,bedingung,posxy,textarea;'
+                                        .'{img_legend},pictype,picture,size;'
+                                        .'{publish_legend},published',
+
+        'picupload'                   => '{type_legend},type;'
+                                        .'{attr_legend},page,bedingung,posxy,textarea;'
+                                        .'{img_legend},pictype,pictag,size;'
+                                        .'{publish_legend},published',
+
+        'picdata'                     => '{type_legend},type;'
+                                        .'{attr_legend},page,bedingung,posxy,textarea;'
+                                        .'{img_legend},pictype,pictag,size;'
+                                        .'{publish_legend},published',
+
+        'qrcode'                      => '{type_legend},type;'
+                                        .'{pdfnc_legend},textitems,textcolor;'
+                                        .'{attr_legend},page,posxy,qrsize;'
                                         .'{publish_legend},published',
     ),
 
@@ -135,6 +160,18 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['tstamp'],
             'sql'                     => "int(10) unsigned NOT NULL default '0'"
         ),
+//-------
+        'type' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['type'],
+            'default'                 => 'text',
+            'inputType'               => 'select',
+            'options'                 => array('text', 'pic', 'qrcode'),
+            'reference'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions'],
+            'eval'                    => array('tl_class'=>'w50', 'submitOnChange'=>true),
+            'sql'                     => "varchar(8) NOT NULL default 'text'"
+        ),
+//-------
         'textitems' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['textitems'],
@@ -164,6 +201,7 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
             ),
             'sql'                     => "mediumtext NULL"
         ),
+//-------
         'page' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['page'],
@@ -174,6 +212,14 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
             'eval'                    => array('mandatory'=>true, 'rgxp'=>'digit', 'tl_class'=>'w50'),
             'sql'                     => "int(10) unsigned NOT NULL default '1'"
         ),
+        'bedingung' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['bedingung'],
+            'exclude'                 => true,
+            'inputType'               => 'text',
+            'eval'                    => array('maxlength'=>64, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(64) NOT NULL default ''"
+        ),
         'posxy' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['posxy'],
@@ -181,6 +227,16 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
             'eval'                    => array('mandatory'=>true, 'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'decodeEntities'=>true, 'tl_class'=>'clr w50'),
             'sql'                     => "varchar(64) NOT NULL default ''"
         ),
+        'textarea' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['textarea'],
+            'exclude'                 => true,
+            'inputType'               => 'text',
+            'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+            'eval'                    => array('mandatory'=>true, 'maxlength'=>6, 'multiple'=>true, 'size'=>2, 'decodeEntities'=>true, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(64) NOT NULL default ''"
+        ),
+//-------
         'borderright' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['borderright'],
@@ -208,6 +264,14 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
             'eval'                    => array('rgxp'=>'digit', 'maxlength'=>16, 'tl_class'=>'w50'),
             'sql'                     => "varchar(16) NOT NULL default '11'"
         ),
+        'textcolor' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['textcolor'],
+            'default'                 => '000ac0',
+            'inputType'               => 'text',
+            'eval'                    => array('maxlength'=>6, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard', 'style'=>'width:138px'),
+            'sql'                     => "varchar(8) NOT NULL default ''"
+        ),
         'fontstyle' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['fontstyle'],
@@ -217,6 +281,43 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
             'eval'                    => array('multiple'=>true, 'tl_class'=>'clr w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
+        'pictype' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictype'],
+            'default'                 => 'file',
+            'inputType'               => 'select',
+            'options'                 => array('file', 'upload', 'data'),
+            'reference'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions'],
+            'eval'                    => array('tl_class'=>'w50', 'submitOnChange'=>true),
+            'sql'                     => "varchar(8) NOT NULL default 'file'"
+        ),
+        'picture' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['picture'],
+            'exclude'                 => true,
+            'inputType'               => 'fileTree',
+            'eval'                    => array('mandatory'=>true, 'filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr', 'extensions'=>Config::get('validImageTypes')),
+            'sql'                     => "binary(16) NULL",
+        ),
+        'pictag' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictag'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => array('mandatory'=>true, 'maxlength'=>64, 'tl_class'=>'clr w50'),
+            'sql'                     => "varchar(64) NOT NULL default ''"
+        ),
+        'qrsize' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['qrsize'],
+            'default'                 => '2',
+            'inputType'               => 'select',
+            'options'                 => array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10'),
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "varchar(2) NOT NULL default '2'"
+        ),
+//-------
         'published' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['published'],
@@ -253,19 +354,40 @@ class tl_pdfnc_positions extends \Backend
     {
         $pub = $arrRow['published'] ? 'color:#555' : 'color:#bbb';
         $pos = deserialize($arrRow['posxy']);
+        $area = deserialize($arrRow['textarea']);
         $items = deserialize($arrRow['textitems']);
 
-        $style = deserialize($arrRow['fontstyle']);
-        $text = (is_array($style) && in_array('bold', $style) ? '<strong>' : '') . (is_array($style) && in_array('italic', $style) ? '<em>' : '');
-        foreach($items as $item) $text .= $item['feld'] . '<br>';
-        $text .= (is_array($style) && in_array('italic', $style) ? '</em>' : '') . (is_array($style) && in_array('bold', $style) ? '</strong>' : '');
+        switch( $arrRow['type']) {
+            case 'pic':     if( $arrRow['pictype'] === 'file') {
+                                $text = \FilesModel::findByUuid($arrRow['picture'])->path;
+                                $text = '<span title="' . $text . '">' . basename($text) . '</span>';
+                            }
+                            else {
+                                $text = $arrRow['pictag'];
+                            }
+                            break;
+
+            case 'qrcode':
+            case 'text':
+            default:        $style = deserialize($arrRow['fontstyle']);
+                            $text = (is_array($style) && in_array('bold', $style) ? '<strong>' : '') . (is_array($style) && in_array('italic', $style) ? '<em>' : '');
+                            foreach($items as $item) $text .= $item['feld'] . '<br>';
+                            $text .= (is_array($style) && in_array('italic', $style) ? '</em>' : '') . (is_array($style) && in_array('bold', $style) ? '</strong>' : '');
+                            break;
+        }
 
         $result = '<table><tr>'
-                 .'<td style="'.$pub.'" width="240" valign="top">' . $text . '</td>'
-                 .'<td style="'.$pub.'" width="80" valign="top">Seite ' . $arrRow['page'] . '</td>'
-                 .'<td style="'.$pub.'" width="80" valign="top">X = ' . $pos[0] . '</td>'
-                 .'<td style="'.$pub.'" width="80" valign="top">Y = ' . $pos[1] . '</td>'
-                 .'</tr></table>';
+                 .'<td width="32"><img src="bundles/softleisterpdfncattachment/pos_' . $arrRow['type'] . '.png" width="16" height="16" alt=""></td>'
+                 .'<td style="' . $pub . '" width="240" valign="top">' . $text . '</td>'
+                 .'<td style="' . $pub . '" width="80" valign="top">' . $GLOBALS['TL_LANG']['tl_pdfnc_positions']['seite'] . ' ' . $arrRow['page'] . '</td>'
+                 .'<td style="' . $pub . '" width="80" valign="top">X = ' . $pos[0] . '</td>'
+                 .'<td style="' . $pub . '" width="80" valign="top">Y = ' . $pos[1] . '</td>';
+
+        if( ($arrRow['type'] === 'pic') && !empty( $arrRow['textarea'] ) ) {
+            $result .= '<td style="' . $pub . '" valign="top">(' . $area[0] . ' x ' . $area[1] . ' mm)</td>';
+        }
+
+        $result .= '</tr></table>';
         return $result;
     }
 

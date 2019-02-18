@@ -3,7 +3,7 @@
 /**
  * Extension for Contao 4
  *
- * @copyright  Softleister 2018
+ * @copyright  Softleister 2018-2019
  * @author     Softleister <info@softleister.de>
  * @package    contao-pdf-nc-attachment-bundle
  * @licence    LGPL
