@@ -72,7 +72,9 @@ class pdfNcAttachmentHooks extends \Backend
 
 
         //--- PDF-Datei erstellen und speichern ---
+        $arrTokens['pdfnc_attachment'] = $arrTokens['pdfnc_document'] = '';
         $pdfdatei = $savepath . '/' . $filename . '.pdf';
+
         if( pdfnc_helper::getPdfData( $arrPDF, $arrTokens, $pdfdatei ) ) {
 
             //--- PDF-Datei in der Dateiverwaltung eintragen ---

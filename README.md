@@ -26,6 +26,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
+* 2.1.0<br>Freigabedatum: 2019-05-20<br>1) Über die Bedingungen in den Gateway-Eigenschaften kann das Generieren des PDF verhindert werden.
 * 2.0.0<br>Freigabedatum: 2019-02-18<br>1) Einbindung von Bilddaten aus Dateiverwaltung, Upload oder einem DataStream<br>2) Einbindung von QR-Codes<br>3) Überschreiben der Standard-Schreibfarbe für einzelne Elemente
 * 1.0.4<br>Freigabedatum: 2018-10-19<br>1) PDF-Anhang jetzt in allen Benachrichtigungen verfügbar<br>2) In der Dateinamenergänzung werden auch SimpleTokens umgewandelt
 * 1.0.0<br>Freigabedatum: 2018-09-23<br>Version für Contao ab Version 4.4 LTS
@@ -33,4 +34,4 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 **Problem melden | *Report Problem*:**<br>per E-Mail | *via Email*: licence@softleister.de
 
 ___
-Softleister - 2019-02-18
+Softleister - 2019-05-20
