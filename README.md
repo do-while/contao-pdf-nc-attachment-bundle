@@ -26,6 +26,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
+* 2.2.0<br>Freigabedatum: 2019-05-24<br>1) Lauffähig in Contao >=4.7, Problematik: TCPDF ist jetzt ein Bundle
 * 2.1.0<br>Freigabedatum: 2019-05-20<br>1) Über die Bedingungen in den Gateway-Eigenschaften kann das Generieren des PDF verhindert werden.
 * 2.0.0<br>Freigabedatum: 2019-02-18<br>1) Einbindung von Bilddaten aus Dateiverwaltung, Upload oder einem DataStream<br>2) Einbindung von QR-Codes<br>3) Überschreiben der Standard-Schreibfarbe für einzelne Elemente
 * 1.0.4<br>Freigabedatum: 2018-10-19<br>1) PDF-Anhang jetzt in allen Benachrichtigungen verfügbar<br>2) In der Dateinamenergänzung werden auch SimpleTokens umgewandelt
