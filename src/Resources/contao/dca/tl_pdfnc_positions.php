@@ -460,7 +460,7 @@ class tl_pdfnc_positions extends \Backend
             $options = deserialize($objFormField->options);                         // Options auflösen
 
             switch( $objFormField->type ) {
-                case 'submit':              continue;                               // Kommt nicht in die Liste
+                case 'submit':              break;                                  // Kommt nicht in die Liste
 
                 case 'efgLookupRadio':
                 case 'efgLookupCheckbox':
@@ -483,7 +483,7 @@ class tl_pdfnc_positions extends \Backend
                 case 'select':
                 case 'radio':
                 case 'checkbox':
-                                            if( empty($options) ) continue;
+                                            if( empty($options) ) break;
                                             foreach($options as $opt) {                             // Die Optionen einzeln
                                                 $arrFields[$objFormField->name . '~'. $opt['value']] = $objFormField->name . '~'. $opt['value'];
                                             }
