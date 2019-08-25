@@ -54,8 +54,8 @@ class pdfNcAttachmentHooks extends \Backend
                          'title'         => $objGatewayModel->pdfnc_title,
                          'author'        => $objGatewayModel->pdfnc_author,
                          'tokenlist'     => $objGatewayModel->pdfnc_tokens,
+                         'arrTokens'     => $arrTokens
                         );
-        unset( $arrFields );
         if( !is_array($arrPDF['protectflags']) ) $arrPDF['protectflags'] = array( $arrPDF['protectflags'] );
 
         // Offsets eintragen, wenn angegeben
@@ -67,6 +67,7 @@ class pdfNcAttachmentHooks extends \Backend
         if( isset($GLOBALS['TL_HOOKS']['pdfnc_BeforePdf']) && \is_array($GLOBALS['TL_HOOKS']['pdfnc_BeforePdf']) ) {
             foreach( $GLOBALS['TL_HOOKS']['pdfnc_BeforePdf'] as $callback ) {
                 $arrPDF = \System::importStatic($callback[0])->{$callback[1]}( $arrPDF, $this );
+                $arrTokens = $arrPDF['arrTokens'];
             }
         }
 

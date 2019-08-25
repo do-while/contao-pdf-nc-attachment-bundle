@@ -26,6 +26,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
+* 2.2.2<br>Freigabedatum: 2019-08-25<br>1) Im Hook pdfnc_BeforePdf arrTokens ergänzt
 * 2.2.1<br>Freigabedatum: 2019-08-21<br>1) Warning in PHP 7.3 beseitigt
 * 2.2.0<br>Freigabedatum: 2019-05-24<br>1) Lauffähig in Contao >=4.7, Problematik: TCPDF ist jetzt ein Bundle
 * 2.1.0<br>Freigabedatum: 2019-05-20<br>1) Über die Bedingungen in den Gateway-Eigenschaften kann das Generieren des PDF verhindert werden.
