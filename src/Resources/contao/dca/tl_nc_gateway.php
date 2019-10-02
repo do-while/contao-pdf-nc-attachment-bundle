@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_nc_gateway']['list']['operations']['positions'] = array (
 $GLOBALS['TL_DCA']['tl_nc_gateway']['palettes']['email'] .= ';{pdfnc_legend},pdfnc_on';
 
 // Subpalette hinzufügen
-$GLOBALS['TL_DCA']['tl_nc_gateway']['subpalettes']['pdfnc_on']      = 'pdfnc_vorlage,pdfnc_savepath,pdfnc_fileext,pdfnc_multiform,pdfnc_allpages,pdfnc_tokens,pdfnc_offset,pdfnc_textcolor,pdfnc_title,pdfnc_author,pdfnc_protect';
+$GLOBALS['TL_DCA']['tl_nc_gateway']['subpalettes']['pdfnc_on']      = 'pdfnc_vorlage,pdfnc_savepath,pdfnc_overwrite,pdfnc_useHomeDir,pdfnc_fileext,pdfnc_multiform,pdfnc_allpages,pdfnc_tokens,pdfnc_offset,pdfnc_textcolor,pdfnc_title,pdfnc_author,pdfnc_protect';
 $GLOBALS['TL_DCA']['tl_nc_gateway']['subpalettes']['pdfnc_protect'] = 'pdfnc_password,pdfnc_openpassword,pdfnc_protectflags';
 
 
@@ -57,8 +57,26 @@ $GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_savepath'] = array (
     'label'         => &$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_savepath'],
     'exclude'       => true,
     'inputType'     => 'fileTree',
-    'eval'          => array('files'=>false, 'fieldType'=>'radio', 'tl_class'=>'clr'),
+    'eval'          => array('files'=>false, 'fieldType'=>'radio', 'tl_class'=>'clr w50'),
     'sql'           => "binary(16) NULL",
+);
+
+$GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_overwrite'] = array (
+    'label'         => &$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_overwrite'],
+    'default'       => '1',
+    'exclude'       => true,
+    'inputType'     => 'checkbox',
+    'eval'          => array('tl_class'=>'w50'),
+    'sql'           => "char(1) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_useHomeDir'] = array (
+    'label'         => &$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_useHomeDir'],
+    'default'       => '1',
+    'exclude'       => true,
+    'inputType'     => 'checkbox',
+    'eval'          => array('tl_class'=>'w50'),
+    'sql'           => "char(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_fileext'] = array (
@@ -66,7 +84,7 @@ $GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_fileext'] = array (
     'default'       => '_{{date::ymd_His}}',
     'exclude'       => true,
     'inputType'     => 'text',
-    'eval'          => array('maxlength'=>255, 'tl_class'=>'w50'),
+    'eval'          => array('maxlength'=>255, 'tl_class'=>'clr w50'),
     'sql'           => "varchar(255) NOT NULL default '_{{date::ymd_His}}'"
 );
 

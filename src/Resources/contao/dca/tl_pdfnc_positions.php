@@ -114,7 +114,7 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
 
         'text'                        => '{type_legend},type;'
                                         .'{pdfnc_legend},textitems,textcolor;'
-                                        .'{attr_legend},page,posxy,borderright,align,fontsize,fontstyle;'
+                                        .'{attr_legend},page,posxy,borderright,align,fontsize,fontstyle,texttransform;'
                                         .'{publish_legend},published',
 
         'picfile'                     => '{type_legend},type;'
@@ -281,6 +281,15 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
             'eval'                    => array('multiple'=>true, 'tl_class'=>'clr w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
+		'texttransform' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform'],
+			'inputType'               => 'select',
+			'options'                 => array('uppercase', 'lowercase', 'capitalize', 'none'),
+			'reference'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform_'],
+			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
+			'sql'                     => "varchar(32) NOT NULL default ''"
+		),
         'pictype' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictype'],

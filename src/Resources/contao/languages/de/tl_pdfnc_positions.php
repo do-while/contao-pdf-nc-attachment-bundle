@@ -22,6 +22,7 @@ $GLOBALS['TL_LANG']['tl_pdfnc_positions']['posxy']              = array('Positio
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['borderright']        = array('Rechter Rand', 'Optionelle Randeinstellung, als Umbruchgrenze bei langen Texten');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['align']              = array('Ausrichtung', 'Ausrichtung bezogen auf die Position.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['fontstyle']          = array('Textattribute', 'Attribute Fett oder Kursiv für die eingefügten Texte');
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform']      = array('Text-Transformation', 'Hier können Sie einen Text-Transformationsmodus auswählen.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['textcolor']          = array('Textfarbe überschreiben', 'Lassen Sie das Feld leer, wenn Sie die Standard-Textfarbe für diese Position nicht überschreiben möchten.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['fontsize']           = array('Textgröße', 'Font Textgröße in pt');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['published']          = array('Veröffentlicht', 'Die Position wird nur im PDF eingetragen, wenn sie veröffentlicht ist.');
@@ -46,6 +47,12 @@ $GLOBALS['TL_LANG']['tl_pdfnc_positions']['upload']               = 'Upload-Date
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['data']                 = 'Data-Stream';
 
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['seite']                = 'Seite';
+
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform_']['uppercase']  = 'Großbuchstaben';
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform_']['lowercase']  = 'Kleinbuchstaben';
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform_']['capitalize'] = 'Anfangsbuchstaben groß';
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform_']['none']       = 'deaktivieren';
+
 
 /**
  * Buttons
