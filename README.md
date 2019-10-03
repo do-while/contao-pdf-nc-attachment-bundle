@@ -26,6 +26,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
+* 2.3.1<br>Freigabedatum: 2019-10-03<br>1) Bug fixes Overwrite
 * 2.3.0<br>Freigabedatum: 2019-10-02<br>1) Speichern im Mitgliedsverzeichnis möglich<br>2) Text-Transformationen für die Texte<br>3) Bug fixes
 * 2.2.2<br>Freigabedatum: 2019-08-25<br>1) Im Hook pdfnc_BeforePdf arrTokens ergänzt
 * 2.2.1<br>Freigabedatum: 2019-08-21<br>1) Warning in PHP 7.3 beseitigt

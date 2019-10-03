@@ -43,7 +43,7 @@ class pdfNcAttachmentHooks extends \Backend
         }
 
         if( file_exists(TL_ROOT . '/' . $savepath . '/' . $filename . '.pdf') ) {
-            if( $objMessage->pdfnc_overwrite !== '1' ) {
+            if( !$objGatewayModel->pdfnc_overwrite ) {
                 $i = 2;
                 while( file_exists(TL_ROOT . '/' . $savepath . '/' . $filename . '-' . $i . '.pdf') ) $i++;
                 $filename = $filename . '-' . $i;
@@ -140,7 +140,7 @@ class pdfNcAttachmentHooks extends \Backend
                 \System::importStatic($callback[0])->{$callback[1]}( $pdfdatei, $arrPDF, $this );
             }
         }
-        return true;                // Notification may be sent
+        return !isset( $arrTokens['do_not_send_notification'] );                // Notification may be sent
     }
 
 
