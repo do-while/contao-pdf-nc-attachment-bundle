@@ -28,7 +28,7 @@ class pdfNcAttachmentHooks extends \Backend
         if( $objGatewayModel->pdfnc_on != 1 ) return true;              // "Fill in PDF form" inactive
 
         $filename = standardize(\StringUtil::restoreBasicEntities($objMessage->title)) . \Haste\Util\StringUtil::recursiveReplaceTokensAndTags( $objGatewayModel->pdfnc_fileext, $arrTokens );
-
+        
         //--- member directory? ---
         $savepath = \FilesModel::findByUuid($objGatewayModel->pdfnc_savepath)->path;
         if( $objGatewayModel->pdfnc_useHomeDir && FE_USER_LOGGED_IN ) {
