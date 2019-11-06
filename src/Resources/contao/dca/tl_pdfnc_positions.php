@@ -114,7 +114,7 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
 
         'text'                        => '{type_legend},type;'
                                         .'{pdfnc_legend},textitems,textcolor;'
-                                        .'{attr_legend},page,posxy,borderright,align,fontsize,fontstyle;'
+                                        .'{attr_legend},page,posxy,borderright,align,fontsize,fontstyle,texttransform;'
                                         .'{publish_legend},published',
 
         'picfile'                     => '{type_legend},type;'
@@ -132,7 +132,7 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
                                         .'{img_legend},pictype,pictag,size;'
                                         .'{publish_legend},published',
 
-        'qrcode'                      => '{type_legend},type;'
+        'qrcode'                      => '{type_legend},type,bartype;'
                                         .'{pdfnc_legend},textitems,textcolor;'
                                         .'{attr_legend},page,posxy,qrsize;'
                                         .'{publish_legend},published',
@@ -164,12 +164,25 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
         'type' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['type'],
+            'exclude'                 => true,
             'default'                 => 'text',
             'inputType'               => 'select',
             'options'                 => array('text', 'pic', 'qrcode'),
             'reference'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions'],
             'eval'                    => array('tl_class'=>'w50', 'submitOnChange'=>true),
             'sql'                     => "varchar(8) NOT NULL default 'text'"
+        ),
+        'bartype' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['bartype'],
+            'exclude'                 => true,
+            'default'                 => 'QRCODE,Q',
+            'inputType'               => 'select',
+            'options'                 => array('2d'=>array('QRCODE,L', 'QRCODE,M', 'QRCODE,Q', 'QRCODE,H', 'PDF417', 'DATAMATRIX'), 
+                                               '1d'=>array('C39', 'C39+', 'C39E', 'C39E+', 'C93', 'S25', 'S25+', 'I25', 'I25+', 'C128', 'C128A', 'C128B', 'C128C', 'EAN8', 'EAN13', 'UPCA', 'UPCE', 'EAN5', 'EAN2', 'MSI', 'MSI+', 'CODABAR', 'CODE11', 'PHARMA', 'PHARMA2T', 'IMB', 'POSTNET', 'PLANET', 'RMS4CC', 'KIX')),
+            'reference'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['bartype_'],
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "varchar(12) NOT NULL default 'QRCODE,Q'"
         ),
 //-------
         'textitems' => array
@@ -281,6 +294,15 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
             'eval'                    => array('multiple'=>true, 'tl_class'=>'clr w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
+		'texttransform' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform'],
+			'inputType'               => 'select',
+			'options'                 => array('uppercase', 'lowercase', 'capitalize', 'none'),
+			'reference'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform_'],
+			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
+			'sql'                     => "varchar(32) NOT NULL default ''"
+		),
         'pictype' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictype'],
@@ -460,7 +482,7 @@ class tl_pdfnc_positions extends \Backend
             $options = deserialize($objFormField->options);                         // Options auflösen
 
             switch( $objFormField->type ) {
-                case 'submit':              continue;                               // Kommt nicht in die Liste
+                case 'submit':              break;                                  // Kommt nicht in die Liste
 
                 case 'efgLookupRadio':
                 case 'efgLookupCheckbox':
@@ -483,7 +505,7 @@ class tl_pdfnc_positions extends \Backend
                 case 'select':
                 case 'radio':
                 case 'checkbox':
-                                            if( empty($options) ) continue;
+                                            if( empty($options) ) break;
                                             foreach($options as $opt) {                             // Die Optionen einzeln
                                                 $arrFields[$objFormField->name . '~'. $opt['value']] = $objFormField->name . '~'. $opt['value'];
                                             }

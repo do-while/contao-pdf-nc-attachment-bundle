@@ -26,6 +26,12 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
+* 2.4.0<br>Freigabedatum: 2019-10-21<br>1) 1D/2D-Barcodes ergänzt
+* 2.3.1<br>Freigabedatum: 2019-10-03<br>1) Bug fixes Overwrite
+* 2.3.0<br>Freigabedatum: 2019-10-02<br>1) Speichern im Mitgliedsverzeichnis möglich<br>2) Text-Transformationen für die Texte<br>3) Bug fixes
+* 2.2.2<br>Freigabedatum: 2019-08-25<br>1) Im Hook pdfnc_BeforePdf arrTokens ergänzt
+* 2.2.1<br>Freigabedatum: 2019-08-21<br>1) Warning in PHP 7.3 beseitigt
+* 2.2.0<br>Freigabedatum: 2019-05-24<br>1) Lauffähig in Contao >=4.7, Problematik: TCPDF ist jetzt ein Bundle
 * 2.1.0<br>Freigabedatum: 2019-05-20<br>1) Über die Bedingungen in den Gateway-Eigenschaften kann das Generieren des PDF verhindert werden.
 * 2.0.0<br>Freigabedatum: 2019-02-18<br>1) Einbindung von Bilddaten aus Dateiverwaltung, Upload oder einem DataStream<br>2) Einbindung von QR-Codes<br>3) Überschreiben der Standard-Schreibfarbe für einzelne Elemente
 * 1.0.4<br>Freigabedatum: 2018-10-19<br>1) PDF-Anhang jetzt in allen Benachrichtigungen verfügbar<br>2) In der Dateinamenergänzung werden auch SimpleTokens umgewandelt
@@ -34,4 +40,4 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 **Problem melden | *Report Problem*:**<br>per E-Mail | *via Email*: licence@softleister.de
 
 ___
-Softleister - 2019-05-20
+Softleister - 2019-10-21
