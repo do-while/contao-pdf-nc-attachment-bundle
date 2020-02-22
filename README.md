@@ -26,6 +26,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
+* 2.4.6<br>Freigabedatum: 2020-02-22<br>1) Bug fixes Lizenzerkennung
 * 2.4.0<br>Freigabedatum: 2019-10-21<br>1) 1D/2D-Barcodes ergänzt
 * 2.3.1<br>Freigabedatum: 2019-10-03<br>1) Bug fixes Overwrite
 * 2.3.0<br>Freigabedatum: 2019-10-02<br>1) Speichern im Mitgliedsverzeichnis möglich<br>2) Text-Transformationen für die Texte<br>3) Bug fixes
@@ -40,4 +41,4 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 **Problem melden | *Report Problem*:**<br>per E-Mail | *via Email*: licence@softleister.de
 
 ___
-Softleister - 2019-10-21
+Softleister - 2020-02-22
