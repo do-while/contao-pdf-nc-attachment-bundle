@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2019, Softleister
+ * @copyright  Copyright (c) 2018-2020, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    LGPL
  */
@@ -20,6 +20,7 @@ $GLOBALS['BE_MOD']['notification_center']['nc_gateways']['testpdf']    = array('
  * Hooks
  */
 $GLOBALS['TL_HOOKS']['sendNotificationMessage'][] = array('Softleister\Pdfncattachment\pdfNcAttachmentHooks', 'execute');
+$GLOBALS['TL_HOOKS']['replaceInsertTags'][]  = array('Softleister\Pdfncattachment\pdfNcAttachmentHooks', 'myReplaceInsertTags');
 
 
 /**

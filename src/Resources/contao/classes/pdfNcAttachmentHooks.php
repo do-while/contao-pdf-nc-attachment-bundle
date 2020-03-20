@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2019, Softleister
+ * @copyright  Copyright (c) 2018-2020, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    LGPL
  */
@@ -140,7 +140,32 @@ class pdfNcAttachmentHooks extends \Backend
                 \System::importStatic($callback[0])->{$callback[1]}( $pdfdatei, $arrPDF, $this );
             }
         }
-        return !isset( $arrTokens['do_not_send_notification'] );                // Notification may be sent
+        return !isset( $arrTokens['do_not_send_notification'] ) && !isset( $arrTokens['form_do_not_send_notification'] );    // Notification may be sent
+    }
+
+
+    //-----------------------------------------------------------------
+    //  InsertTags abarbeiten
+    //
+    //  {{pdfnc::pdfdocument}}
+    //  {{pdfnc::pdfdocument::name}}
+    //-----------------------------------------------------------------
+    public function myReplaceInsertTags( $strTag )
+    {
+        $tag = explode( '::', $strTag );
+        if( $tag[0] !== 'pdfnc' ) return false;                                 // nicht zuständig für diese InsertTags
+
+        if( strtolower($tag[1] == 'pdfdocument' ) ) {
+            if( !isset($_SESSION['pdfnc']['pdfdocument']) ) return false;       // bisher kein Dokument erstellt
+
+            if( !isset($tag[2]) ) $tag[2] = '';                                 // kein 3. Parameter angegeben, mit default ergänzen
+            switch( $tag[2] ) {
+                case 'name':    return basename($_SESSION['pdfnc']['pdfdocument']);
+                default:        return $_SESSION['pdfnc']['pdfdocument'];
+            }
+        }
+
+        return false;                                                           // kein bekannter InsertTag => nicht zuständig!
     }
 
 
