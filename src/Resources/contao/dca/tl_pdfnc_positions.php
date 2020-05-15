@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2019, Softleister
+ * @copyright  Copyright (c) 2018-2020, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    LGPL
  */
@@ -113,7 +113,7 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
                                         .'{publish_legend},published',
 
         'text'                        => '{type_legend},type;'
-                                        .'{pdfnc_legend},textitems,textcolor;'
+                                        .'{pdfnc_legend},textitems,textcolor,noblanks;'
                                         .'{attr_legend},page,posxy,borderright,align,fontsize,fontstyle,texttransform;'
                                         .'{publish_legend},published',
 
@@ -133,7 +133,7 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
                                         .'{publish_legend},published',
 
         'qrcode'                      => '{type_legend},type,bartype;'
-                                        .'{pdfnc_legend},textitems,textcolor;'
+                                        .'{pdfnc_legend},textitems,textcolor,noblanks;'
                                         .'{attr_legend},page,posxy,qrsize;'
                                         .'{publish_legend},published',
     ),
@@ -213,6 +213,14 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
                     )
             ),
             'sql'                     => "mediumtext NULL"
+        ),
+        'noblanks' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['noblanks'],
+            'exclude'                 => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'m12 w50'),
+            'sql'                     => "char(1) NOT NULL default ''"
         ),
 //-------
         'page' => array

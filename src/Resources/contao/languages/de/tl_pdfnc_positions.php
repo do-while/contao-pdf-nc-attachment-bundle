@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2019, Softleister
+ * @copyright  Copyright (c) 2018-2020, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    commercial
  */
@@ -32,6 +32,7 @@ $GLOBALS['TL_LANG']['tl_pdfnc_positions']['picture']            = array('Bild', 
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictype']            = array('Bilddaten', 'Bild aus Datei oder aus einem Data-Stream verwenden.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictag']             = array('SimpleTag mit Bilddaten', 'Definieren Sie den SimpleToken, der die Bilddaten enthält.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['qrsize']             = array('Größe des Barcodes', 'Wählen Sie die Größe aus.');
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['noblanks']           = array('Keine automatischen Leerzeichen', 'Unterdrückt das automatische Einfügen von Leerzeichen zwischen den Feldern.');
 
 /**
  * References
