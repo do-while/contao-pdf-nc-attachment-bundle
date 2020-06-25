@@ -26,6 +26,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
+* 2.6.1<br>Freigabedatum: 2020-06-25<br>1) InsertTags in PDF-Titel und -Autor möglich
 * 2.6.0<br>Freigabedatum: 2020-05-15<br>1) Neue Option für die Unterdrückung automatischer Leerzeichen
 * 2.5.1<br>Freigabedatum: 2020-05-05<br>1) Liste der SimpleTokens bei Contao-Versionen >= 4.6
 * 2.5.0<br>Freigabedatum: 2020-03-20<br>1) InsertTags {{pdfnc::pdfdocument}} und {{pdfnc::pdfdocument::name}}
@@ -44,4 +45,4 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 **Problem melden | *Report Problem*:**<br>per E-Mail | *via Email*: licence@softleister.de
 
 ___
-Softleister - 2020-05-15
+Softleister - 2020-06-25
