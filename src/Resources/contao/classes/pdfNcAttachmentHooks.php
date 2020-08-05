@@ -27,7 +27,11 @@ class pdfNcAttachmentHooks extends \Backend
         if( $objMessage->gateway_type !== 'email' ) return true;        // for gateway type "email" only
         if( $objGatewayModel->pdfnc_on != 1 ) return true;              // "Fill in PDF form" inactive
 
-        $filename = standardize(\StringUtil::restoreBasicEntities($objMessage->title)) . \Haste\Util\StringUtil::recursiveReplaceTokensAndTags( $objGatewayModel->pdfnc_fileext, $arrTokens );
+        $filename = \Haste\Util\StringUtil::recursiveReplaceTokensAndTags( $objGatewayModel->pdfnc_fileext, $arrTokens );   // Filename-Erweiterung aus den Eigenschaften
+        if( empty( $filename ) || in_array( substr($filename, 0, 1), ['-', '_']) ) {
+            $filename = $objMessage->title . $filename;            
+        }
+        $filename = standardize(\StringUtil::restoreBasicEntities( $filename ));
         
         //--- member directory? ---
         $savepath = \FilesModel::findByUuid($objGatewayModel->pdfnc_savepath)->path;
