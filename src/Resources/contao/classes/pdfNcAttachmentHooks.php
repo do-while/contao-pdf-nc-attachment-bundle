@@ -59,10 +59,33 @@ class pdfNcAttachmentHooks extends \Backend
             file_put_contents(TL_ROOT . '/' . $savepath . '/' . $filename . '.pdf', '');        // create empty file
         }
 
+        //--- Get filename of template PDF ---
+        $vorlage = '';          // no template PDF
+        
+        // 1. template PDF from gateway settings
+        $objVorlage = \FilesModel::findByUuid( $objGatewayModel->pdfnc_vorlage );
+        if( $objVorlage !== null ) {
+            $vorlage = $objVorlage->path;
+        }
+
+        // 2. template PDF from SimpleTokens ##filename_template_pdf## or ##form_filename_template_pdf##
+        if( isset( $arrTokens['filename_template_pdf'] ) ) {
+            $vorlage = $arrTokens['filename_template_pdf'];
+        }
+        else if( isset( $arrTokens['form_filename_template_pdf'] ) ) {
+            $vorlage = $arrTokens['form_filename_template_pdf'];
+        }
+        if( \Validator::isUuid( $vorlage ) ) {                      // IF( vorlage == UUID )
+            $objVorlage = \FilesModel::findByUuid( $vorlage );
+            if( $objVorlage !== null ) {
+                $vorlage = $objVorlage->path;
+            }
+        }
+
         $arrPDF = array( 'gateid'        => $objGatewayModel->id,
                          'gatetitle'     => $objGatewayModel->title,
                          'filename'      => $filename,
-                         'vorlage'       => \FilesModel::findByUuid($objGatewayModel->pdfnc_vorlage)->path,
+                         'vorlage'       => trim( $vorlage, '/' ),
                          'savepath'      => $savepath,
                          'protect'       => $objGatewayModel->pdfnc_protect,
                          'openpassword'  => \Controller::replaceInsertTags( pdfnc_helper::decrypt($objGatewayModel->pdfnc_openpassword ), false ),

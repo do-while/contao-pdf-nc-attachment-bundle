@@ -26,6 +26,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
+* 2.7.0<br>Freigabedatum; 2020-11-08<br>1) Dynamische Vorgabe-PDF per SimpleToken
 * 2.6.3<br>Freigabedatum: 2020-08-05<br>1) Bugfix: Fehler bei Bild aus nicht auflösbarem SimpleToken<br>2) Die Bennung der Ausgabe-PDF kann jetzt auch ohne den Titel der Benachrichtigung erfolgen (siehe Hint)
 * 2.6.2<br>Freigabedatum: 2020-06-26<br>1) Bugfix: Bilder wurden nicht eingebunden, ab Contao 4.8.2
 * 2.6.1<br>Freigabedatum: 2020-06-25<br>1) InsertTags in PDF-Titel und -Autor möglich

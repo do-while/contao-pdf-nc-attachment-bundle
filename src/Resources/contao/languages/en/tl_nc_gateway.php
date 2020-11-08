@@ -13,7 +13,7 @@
  */
 $GLOBALS['TL_LANG']['tl_nc_gateway']['tstamp']              = array('Modification date', 'Last modification time');
 $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_on']            = array('Fill PDF form', 'Filling out a PDF template');
-$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_vorlage']       = array('PDF template file', 'Please select the PDF file as a template. You have the opportunity to make parts of submission dependent.');
+$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_vorlage']       = array('PDF template file', 'Please select a PDF file as template. Alternatively, the template can be defined via the SimpleTakens ##filename_template_pdf## or ##form_filename_template_pdf##, or by using a hook.');
 $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_savepath']      = array('Directory for storing', 'Please select the directory where the PDF files should be saved. The directory can also be protected.');
 $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_overwrite']     = array('Overwrite existing file', 'Normally, a version number is appended if the file already exists.');
 $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_useHomeDir']    = array('Save in member directory, if possible', 'If a member is logged on to the frontend, the PDF is saved in the member directory.');
@@ -47,8 +47,8 @@ $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_protectflag']['fill-forms']  = 'Fill
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG']['tl_nc_gateway']['positions']  = array('Positions', 'Definition of text positions within the PDF');
- 
+$GLOBALS['TL_LANG']['tl_nc_gateway']['positions']  = array('Positions', 'Definition of text positions within the PDF<br>contao-pdf-nc-attachment-bundle V ' . \System::getContainer()->getParameter('kernel.packages')['do-while/contao-pdf-nc-attachment-bundle']);
+
 /**
  * Legends
  */

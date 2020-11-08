@@ -43,10 +43,29 @@ class pdfnc_TestPdf extends \Backend
 
         if( ($objGate->numRows < 1) || ($objGate->pdfnc_on != '1') ) return;    // PDF-Attachment abgeschaltet!
 
+        //--- Get filename of template PDF ---
+        $vorlage = '';          // no template PDF
+        
+        // 1. template PDF from gateway settings
+        $objVorlage = \FilesModel::findByUuid( $objGate->pdfnc_vorlage );
+        if( $objVorlage !== null ) {
+            $vorlage = $objVorlage->path;
+        }
+
+        // 2. template PDF from SimpleTokens ##filename_template_pdf## or ##form_filename_template_pdf##
+        // -not usable for test PDF output, because the SimpleToken not exists-
+
+        if( \Validator::isUuid( $vorlage ) ) {                      // IF( vorlage == UUID )
+            $objVorlage = \FilesModel::findByUuid( $vorlage );
+            if( $objVorlage !== null ) {
+                $vorlage = $objVorlage->path;
+            }
+        }
+
         $arrPDF = array( 'gateid'        => $objGate->id,
                          'gatetitle'     => $objGate->title,
                          'filename'      => standardize( \StringUtil::restoreBasicEntities($objGate->title) ),
-                         'vorlage'       => \FilesModel::findByUuid($objGate->pdfnc_vorlage)->path,
+                         'vorlage'       => trim( $vorlage, '/' ),
                          'savepath'      => \FilesModel::findByUuid($objGate->pdfnc_savepath)->path,
                          'protect'       => $objGate->pdfnc_protect,
                          'openpassword'  => \Controller::replaceInsertTags( pdfnc_helper::decrypt($objGate->pdfnc_openpassword ) ),

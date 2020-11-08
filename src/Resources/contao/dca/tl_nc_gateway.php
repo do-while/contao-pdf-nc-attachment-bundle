@@ -49,7 +49,7 @@ $GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_vorlage'] = array (
     'label'         => &$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_vorlage'],
     'exclude'       => true,
     'inputType'     => 'fileTree',
-    'eval'          => array('filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr', 'extensions'=>'pdf'),
+    'eval'          => array('filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr', 'extensions'=>'pdf'),
     'sql'           => "binary(16) NULL",
 );
 

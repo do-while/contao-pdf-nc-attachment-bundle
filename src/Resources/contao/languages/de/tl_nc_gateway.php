@@ -13,7 +13,7 @@
  */
 $GLOBALS['TL_LANG']['tl_nc_gateway']['tstamp']              = array('Änderungsdatum', 'Zeitpunkt der letzten Änderung');
 $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_on']            = array('PDF-Formular ausfüllen', 'Ausfüllen einer PDF-Vorlage');
-$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_vorlage']       = array('PDF-Vorlage-Datei', 'Bitte wählen Sie die PDF-Datei als Vorlage aus. Sie haben so die Möglichkeit, die Vorlage von Formularinhalten abhängig zu machen.');
+$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_vorlage']       = array('PDF-Vorlage-Datei', 'Bitte wählen Sie eine PDF-Datei als Vorlage aus. Alternativ kann die Vorlage über die SimpleTakens ##filename_template_pdf## oder ##form_filename_template_pdf##, oder mittels Hook definiert werden.');
 $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_savepath']      = array('Verzeichnis zur Speicherung', 'Bitte wählen Sie das Verzeichnis aus, wo die PDF-Dateien gespeichert werden sollen. Das Verzeichnis kann auch geschützt sein.');
 $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_overwrite']     = array('Bestehende Datei überschreiben', 'Normalerweise wird eine Versionsnummer angehängt, wenn die Datei bereits vorhanden ist.');
 $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_useHomeDir']    = array('Im Mitgliedsverzeichnis speichern, wenn möglich', 'Wenn ein Mitglied im Frontend angemeldet ist, wird das PDF ins Mitgliedsverzeichnis gespeichert.');
@@ -48,7 +48,7 @@ $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_protectflag']['fill-forms']  = 'Form
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG']['tl_nc_gateway']['positions']  = array('Positionen', 'Definition der Textpositionen im PDF');
+$GLOBALS['TL_LANG']['tl_nc_gateway']['positions']  = array('Positionen', 'Definition der Textpositionen im PDF <br>contao-pdf-nc-attachment-bundle V ' . \System::getContainer()->getParameter('kernel.packages')['do-while/contao-pdf-nc-attachment-bundle']);
  
 /**
  * Legends
