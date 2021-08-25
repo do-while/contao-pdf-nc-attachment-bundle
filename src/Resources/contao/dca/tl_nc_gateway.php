@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2019, Softleister
+ * @copyright  Copyright (c) 2018-2021, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    LGPL
  */
@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_nc_gateway']['list']['operations']['positions'] = array (
 $GLOBALS['TL_DCA']['tl_nc_gateway']['palettes']['email'] .= ';{pdfnc_legend},pdfnc_on';
 
 // Subpalette hinzufügen
-$GLOBALS['TL_DCA']['tl_nc_gateway']['subpalettes']['pdfnc_on']      = 'pdfnc_vorlage,pdfnc_savepath,pdfnc_overwrite,pdfnc_useHomeDir,pdfnc_fileext,pdfnc_multiform,pdfnc_allpages,pdfnc_tokens,pdfnc_offset,pdfnc_textcolor,pdfnc_title,pdfnc_author,pdfnc_protect';
+$GLOBALS['TL_DCA']['tl_nc_gateway']['subpalettes']['pdfnc_on']      = 'pdfnc_vorlage,pdfnc_savepath,pdfnc_overwrite,pdfnc_useHomeDir,pdfnc_fileext,pdfnc_multiform,pdfnc_allpages,pdfnc_tokens,pdfnc_offset,pdfnc_textcolor,pdfnc_title,pdfnc_author,pdfnc_protect;{pdfnc_fontlegend:hide},pdfnc_font,pdfnc_fontb,pdfnc_fonti,pdfnc_fontbi';
 $GLOBALS['TL_DCA']['tl_nc_gateway']['subpalettes']['pdfnc_protect'] = 'pdfnc_password,pdfnc_openpassword,pdfnc_protectflags';
 
 
@@ -204,3 +204,34 @@ $GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_multiform'] = array (
     'sql'                     => "mediumtext NULL"
 );
 
+$GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_font'] = array (
+    'label'     => &$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_font'],
+    'exclude'   => true,
+    'inputType' => 'fileTree',
+    'eval'      => array('filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr w50', 'extensions'=>'ttf,otf'),
+    'sql'       => "binary(16) NULL",
+);
+
+$GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_fontb'] = array (
+    'label'     => &$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_fontb'],
+    'exclude'   => true,
+    'inputType' => 'fileTree',
+    'eval'      => array('filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'w50', 'extensions'=>'ttf,otf'),
+    'sql'       => "binary(16) NULL",
+);
+
+$GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_fonti'] = array (
+    'label'     => &$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_fonti'],
+    'exclude'   => true,
+    'inputType' => 'fileTree',
+    'eval'      => array('filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'w50', 'extensions'=>'ttf,otf'),
+    'sql'       => "binary(16) NULL",
+);
+
+$GLOBALS['TL_DCA']['tl_nc_gateway']['fields']['pdfnc_fontbi'] = array (
+    'label'     => &$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_fontbi'],
+    'exclude'   => true,
+    'inputType' => 'fileTree',
+    'eval'      => array('filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'w50', 'extensions'=>'ttf,otf'),
+    'sql'       => "binary(16) NULL",
+);

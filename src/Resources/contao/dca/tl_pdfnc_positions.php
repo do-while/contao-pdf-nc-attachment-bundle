@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2020, Softleister
+ * @copyright  Copyright (c) 2018-2021, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    LGPL
  */
@@ -326,7 +326,7 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['picture'],
             'exclude'                 => true,
             'inputType'               => 'fileTree',
-            'eval'                    => array('mandatory'=>true, 'filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr', 'extensions'=>Config::get('validImageTypes')),
+            'eval'                    => array('mandatory'=>true, 'filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr', 'extensions'=>\Contao\Config::get('validImageTypes')),
             'sql'                     => "binary(16) NULL",
         ),
         'pictag' => array
@@ -364,7 +364,7 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
 /**
  * Class tl_pdfnc_positions
  */
-class tl_pdfnc_positions extends \Backend
+class tl_pdfnc_positions extends \Contao\Backend
 {
     /**
      * Import the back end user object
@@ -383,13 +383,13 @@ class tl_pdfnc_positions extends \Backend
     public function listPositions($arrRow)
     {
         $pub = $arrRow['published'] ? 'color:#555' : 'color:#bbb';
-        $pos = deserialize($arrRow['posxy']);
-        $area = deserialize($arrRow['textarea']);
-        $items = deserialize($arrRow['textitems']);
+        $pos = \Contao\StringUtil::deserialize($arrRow['posxy']);
+        $area = \Contao\StringUtil::deserialize($arrRow['textarea']);
+        $items = \Contao\StringUtil::deserialize($arrRow['textitems']);
 
         switch( $arrRow['type']) {
             case 'pic':     if( $arrRow['pictype'] === 'file') {
-                                $text = \FilesModel::findByUuid($arrRow['picture'])->path;
+                                $text = \Contao\FilesModel::findByUuid($arrRow['picture'])->path;
                                 $text = '<span title="' . $text . '">' . basename($text) . '</span>';
                             }
                             else {
@@ -399,7 +399,7 @@ class tl_pdfnc_positions extends \Backend
 
             case 'qrcode':
             case 'text':
-            default:        $style = deserialize($arrRow['fontstyle']);
+            default:        $style = \Contao\StringUtil::deserialize($arrRow['fontstyle']);
                             $text = (is_array($style) && in_array('bold', $style) ? '<strong>' : '') . (is_array($style) && in_array('italic', $style) ? '<em>' : '');
                             foreach($items as $item) $text .= $item['feld'] . '<br>';
                             $text .= (is_array($style) && in_array('italic', $style) ? '</em>' : '') . (is_array($style) && in_array('bold', $style) ? '</strong>' : '');
@@ -426,8 +426,8 @@ class tl_pdfnc_positions extends \Backend
     //-----------------------------------------------------------------
     public function toggleIcon( $row, $href, $label, $title, $icon, $attributes )
     {
-        if( strlen(Input::get('tid')) ) {
-            $this->toggleVisibility( Input::get('tid'), (Input::get('state') == 1) );
+        if( strlen(\Contao\Input::get('tid')) ) {
+            $this->toggleVisibility( \Contao\Input::get('tid'), (\Contao\Input::get('state') == 1) );
             $this->redirect( $this->getReferer() );
         }
 
@@ -437,7 +437,7 @@ class tl_pdfnc_positions extends \Backend
             $icon = 'invisible.gif';
         }
 
-        return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
+        return '<a href="' . $this->addToUrl($href) . '" title="' . \Contao\StringUtil::specialchars($title) . '"' . $attributes . '>' . \Contao\Image::getHtml($icon, $label) . '</a> ';
     }
 
 
@@ -446,7 +446,7 @@ class tl_pdfnc_positions extends \Backend
     //-----------------------------------------------------------------
     public function toggleVisibility( $intId, $blnVisible )
     {
-        $objVersions = new Versions( 'tl_pdfnc_positions', $intId );
+        $objVersions = new \Contao\Versions( 'tl_pdfnc_positions', $intId );
         $objVersions->initialize( );
 
         // Trigger the save_callback
@@ -463,10 +463,10 @@ class tl_pdfnc_positions extends \Backend
         }
 
         // Update the database
-        $this->Database->prepare("UPDATE tl_pdfnc_positions SET tstamp=". time() .", published='" . $blnVisible . "' WHERE id=?")->execute( $intId );
+        $this->Database->prepare("UPDATE tl_pdfnc_positions SET tstamp=" . time() . ", published='" . $blnVisible . "' WHERE id=?")->execute( $intId );
 
         $objVersions->create();
-        $this->log( 'A new version of record "tl_pdfnc_positions.id='.$intId.'" has been created'.$this->getParentEntries('tl_pdfnc_positions', $intId ), __METHOD__, TL_GENERAL);
+        \Contao\System::log( 'A new version of record "tl_pdfnc_positions.id=' . $intId . '" has been created' . $this->getParentEntries('tl_pdfnc_positions', $intId ), __METHOD__, TL_GENERAL);
     }
 
 
@@ -487,7 +487,7 @@ class tl_pdfnc_positions extends \Backend
         if( $objFormField->numRows < 1 ) return $arrFields;                         // keine Felder nicht gefunden: leeres Array zurück
 
         while( $objFormField->next() ) {
-            $options = deserialize($objFormField->options);                         // Options auflösen
+            $options = \Contao\StringUtil::deserialize($objFormField->options);     // Options auflösen
 
             switch( $objFormField->type ) {
                 case 'submit':              break;                                  // Kommt nicht in die Liste
@@ -495,7 +495,7 @@ class tl_pdfnc_positions extends \Backend
                 case 'efgLookupRadio':
                 case 'efgLookupCheckbox':
                 case 'efgLookupSelect':
-                                            $efgOpt = deserialize($objFormField->efgLookupOptions);
+                                            $efgOpt = \Contao\StringUtil::deserialize($objFormField->efgLookupOptions);
                                             $dot = strpos( $efgOpt['lookup_val_field'], '.' ) + 1;
                                             $val_field = substr($efgOpt['lookup_val_field'], $dot);
                                             $name_field = substr($efgOpt['lookup_field'], $dot);

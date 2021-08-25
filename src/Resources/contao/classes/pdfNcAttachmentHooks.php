@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2020, Softleister
+ * @copyright  Copyright (c) 2018-2021, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    LGPL
  */
@@ -15,7 +15,7 @@ require_once( TL_ROOT . '/vendor/do-while/contao-pdf-nc-attachment-bundle/src/Re
 //-----------------------------------------------------------------
 //  pdfNcAttachmentHooks:    Output of the PDF
 //-----------------------------------------------------------------
-class pdfNcAttachmentHooks extends \Backend
+class pdfNcAttachmentHooks extends \Contao\Backend
 {
     protected   $arrProtectflags = array('modify','extract','print','print-high','copy','annot-forms','fill-forms');
 
@@ -31,15 +31,15 @@ class pdfNcAttachmentHooks extends \Backend
         if( empty( $filename ) || in_array( substr($filename, 0, 1), ['-', '_']) ) {
             $filename = $objMessage->title . $filename;            
         }
-        $filename = standardize(\StringUtil::restoreBasicEntities( $filename ));
+        $filename = \Contao\StringUtil::standardize(\Contao\StringUtil::restoreBasicEntities( $filename ));
         
         //--- member directory? ---
-        $savepath = \FilesModel::findByUuid($objGatewayModel->pdfnc_savepath)->path;
+        $savepath = \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_savepath)->path;
         if( $objGatewayModel->pdfnc_useHomeDir && FE_USER_LOGGED_IN ) {
 			$this->import('FrontendUser', 'User');
 
 			if( $this->User->assignDir && $this->User->homeDir ) {
-                $dir = \FilesModel::findByUuid($this->User->homeDir)->path;
+                $dir = \Contao\FilesModel::findByUuid($this->User->homeDir)->path;
                 if( is_dir( TL_ROOT . '/' . $dir ) ) {
 				    $savepath = $dir;                                   // Accept member directory
                 }
@@ -63,7 +63,7 @@ class pdfNcAttachmentHooks extends \Backend
         $vorlage = '';          // no template PDF
         
         // 1. template PDF from gateway settings
-        $objVorlage = \FilesModel::findByUuid( $objGatewayModel->pdfnc_vorlage );
+        $objVorlage = \Contao\FilesModel::findByUuid( $objGatewayModel->pdfnc_vorlage );
         if( $objVorlage !== null ) {
             $vorlage = $objVorlage->path;
         }
@@ -75,8 +75,8 @@ class pdfNcAttachmentHooks extends \Backend
         else if( isset( $arrTokens['form_filename_template_pdf'] ) ) {
             $vorlage = $arrTokens['form_filename_template_pdf'];
         }
-        if( \Validator::isUuid( $vorlage ) ) {                      // IF( vorlage == UUID )
-            $objVorlage = \FilesModel::findByUuid( $vorlage );
+        if( \Contao\Validator::isUuid( $vorlage ) ) {                      // IF( vorlage == UUID )
+            $objVorlage = \Contao\FilesModel::findByUuid( $vorlage );
             if( $objVorlage !== null ) {
                 $vorlage = $objVorlage->path;
             }
@@ -88,36 +88,40 @@ class pdfNcAttachmentHooks extends \Backend
                          'vorlage'       => trim( $vorlage, '/' ),
                          'savepath'      => $savepath,
                          'protect'       => $objGatewayModel->pdfnc_protect,
-                         'openpassword'  => \Controller::replaceInsertTags( pdfnc_helper::decrypt($objGatewayModel->pdfnc_openpassword ), false ),
-                         'protectflags'  => deserialize($objGatewayModel->pdfnc_protectflags),
-                         'password'      => \Controller::replaceInsertTags( pdfnc_helper::decrypt($objGatewayModel->pdfnc_password ), false ),
-                         'multiform'     => deserialize($objGatewayModel->pdfnc_multiform),
+                         'openpassword'  => \Contao\Controller::replaceInsertTags( pdfnc_helper::decrypt($objGatewayModel->pdfnc_openpassword ), false ),
+                         'protectflags'  => \Contao\StringUtil::deserialize($objGatewayModel->pdfnc_protectflags),
+                         'password'      => \Contao\Controller::replaceInsertTags( pdfnc_helper::decrypt($objGatewayModel->pdfnc_password ), false ),
+                         'multiform'     => \Contao\StringUtil::deserialize($objGatewayModel->pdfnc_multiform),
                          'allpages'      => $objGatewayModel->pdfnc_allpages,
                          'offset'        => array( 0, 0 ),
                          'textcolor'     => $objGatewayModel->pdfnc_textcolor,
-                         'title'         => \Controller::replaceInsertTags( $objGatewayModel->pdfnc_title, false ),
-                         'author'        => \Controller::replaceInsertTags( $objGatewayModel->pdfnc_author, false ),
+                         'title'         => \Contao\Controller::replaceInsertTags( $objGatewayModel->pdfnc_title, false ),
+                         'author'        => \Contao\Controller::replaceInsertTags( $objGatewayModel->pdfnc_author, false ),
                          'tokenlist'     => $objGatewayModel->pdfnc_tokens,
-                         'arrTokens'     => $arrTokens
-                        );
+                         'arrTokens'     => $arrTokens,
+                         'R'             => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_font)->path,
+                         'B'             => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_fontb)->path,
+                         'I'             => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_fonti)->path,
+                         'IB'            => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_fontbi)->path,
+                       );
         if( !is_array($arrPDF['protectflags']) ) $arrPDF['protectflags'] = array( $arrPDF['protectflags'] );
 
         // Enter offsets if specified
-        $ofs = deserialize($objGatewayModel->pdfnc_offset);
+        $ofs = \Contao\StringUtil::deserialize($objGatewayModel->pdfnc_offset);
         if( isset($ofs[0]) && is_numeric($ofs[0]) ) $arrPDF['offset'][0] = $ofs[0];
         if( isset($ofs[1]) && is_numeric($ofs[1]) ) $arrPDF['offset'][1] = $ofs[1];
 
         // HOOK: before pdf generation
         if( isset($GLOBALS['TL_HOOKS']['pdfnc_BeforePdf']) && \is_array($GLOBALS['TL_HOOKS']['pdfnc_BeforePdf']) ) {
             foreach( $GLOBALS['TL_HOOKS']['pdfnc_BeforePdf'] as $callback ) {
-                $arrPDF = \System::importStatic($callback[0])->{$callback[1]}( $arrPDF, $this );
+                $arrPDF = \Contao\System::importStatic($callback[0])->{$callback[1]}( $arrPDF, $this );
                 $arrTokens = $arrPDF['arrTokens'];
             }
         }
 
 
         //-- Include Settings
-        $tcpdfinit = \Config::get("pdftemplateTcpdf");
+        $tcpdfinit = \Contao\Config::get("pdftemplateTcpdf");
 
         // 1: Own settings addressed via app/config/config.yml
         if( !empty($tcpdfinit) && file_exists(TL_ROOT . '/' . $tcpdfinit) ) {
@@ -148,15 +152,15 @@ class pdfNcAttachmentHooks extends \Backend
         if( pdfnc_helper::getPdfData( $arrPDF, $arrTokens, $pdfdatei ) ) {
 
             //--- Enter PDF file in the file manager ---
-            $objFile = \Dbafs::addResource( $pdfdatei );
-            \Dbafs::updateFolderHashes( $strUploadFolder );
+            $objFile = \Contao\Dbafs::addResource( $pdfdatei );
+            \Contao\Dbafs::updateFolderHashes( $strUploadFolder );
 
             //--- Create token for created file ---
             $arrTokens['pdfnc_attachment'] = $pdfdatei;
             $arrTokens['pdfnc_document'] = basename( $pdfdatei );
 
             //--- Entry in log ---
-            \System::Log('PDF attachment "' . $filename . '.pdf" has been created', __METHOD__, TL_ACCESS);
+            \Contao\System::Log('PDF attachment "' . $filename . '.pdf" has been created', __METHOD__, TL_ACCESS);
         }
         else $pdfdatei = '';        // no file was created
 
@@ -164,7 +168,7 @@ class pdfNcAttachmentHooks extends \Backend
         // HOOK: after pdf generation
         if( isset($GLOBALS['TL_HOOKS']['pdfnc_AfterPdf']) && \is_array($GLOBALS['TL_HOOKS']['pdfnc_AfterPdf']) ) {
             foreach( $GLOBALS['TL_HOOKS']['pdfnc_AfterPdf'] as $callback ) {
-                \System::importStatic($callback[0])->{$callback[1]}( $pdfdatei, $arrPDF, $this );
+                \Contao\System::importStatic($callback[0])->{$callback[1]}( $pdfdatei, $arrPDF, $this );
             }
         }
         return !isset( $arrTokens['do_not_send_notification'] ) && !isset( $arrTokens['form_do_not_send_notification'] );    // Notification may be sent

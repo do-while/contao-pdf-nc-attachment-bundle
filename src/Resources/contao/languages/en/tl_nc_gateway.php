@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2019, Softleister
+ * @copyright  Copyright (c) 2018-2021, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    commercial
  */
@@ -31,6 +31,10 @@ $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_tokens']        = array('List of Sim
 $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_multiform']     = array('Multi-form template', 'If the template file contains different forms, applicable pages can be defined here, e.g. 1-4,7,10. Leave the fields blank to use all pages.');
 $GLOBALS['TL_LANG']['tl_nc_gateway']['multiform_bedingung'] = array('Condition', 'If the condition is fulfilled, only the specified pages are used for the PDF output.');
 $GLOBALS['TL_LANG']['tl_nc_gateway']['multiform_seiten']    = array('Pages from the PDF template', 'Specify a list of the corresponding pages separated by commas or as range specifications, e. g. 1-4,7,10');
+$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_font']          = array('Custom font (regular)', 'Select your font file for the regular font or leave the field empty for the default font.');
+$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_fontb']         = array('Custom font (bold)', 'Select your font file for the bold font or leave the field empty for the default font.');
+$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_fonti']         = array('Custom font (italic)', 'Select your font file for the italic font or leave the field empty for the default font.');
+$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_fontbi']        = array('Custom font (bold+italic)', 'Select your font file for the bold italic font or leave the field empty for the default font.');
 
 /**
  * References
@@ -47,9 +51,10 @@ $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_protectflag']['fill-forms']  = 'Fill
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG']['tl_nc_gateway']['positions']  = array('Positions', 'Definition of text positions within the PDF<br>contao-pdf-nc-attachment-bundle V ' . \System::getContainer()->getParameter('kernel.packages')['do-while/contao-pdf-nc-attachment-bundle']);
+$GLOBALS['TL_LANG']['tl_nc_gateway']['positions']  = array('Positions', 'Definition of text positions within the PDF<br>contao-pdf-nc-attachment-bundle V ' . \Contao\System::getContainer()->getParameter('kernel.packages')['do-while/contao-pdf-nc-attachment-bundle']);
 
 /**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_legend']  = 'Fill in PDF form';
+$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_legend']     = 'Fill in PDF form';
+$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_fontlegend'] = 'Use your own fonts';

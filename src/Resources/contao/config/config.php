@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2020, Softleister
+ * @copyright  Copyright (c) 2018-2021, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    LGPL
  */
