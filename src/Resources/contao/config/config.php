@@ -19,17 +19,6 @@ $GLOBALS['BE_MOD']['notification_center']['nc_gateways']['testpdf']    = array('
 /**
  * Hooks
  */
+$GLOBALS['TL_HOOKS']['initializeSystem'][]  = array('Softleister\Pdfncattachment\pdfNcAttachmentHooks', 'myInitializeSystem');
 $GLOBALS['TL_HOOKS']['sendNotificationMessage'][] = array('Softleister\Pdfncattachment\pdfNcAttachmentHooks', 'execute');
 $GLOBALS['TL_HOOKS']['replaceInsertTags'][]  = array('Softleister\Pdfncattachment\pdfNcAttachmentHooks', 'myReplaceInsertTags');
-
-
-/**
- * Attachment-Token für alle Notifications hinzufügen
- */
-foreach( $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'] as $vendor=>$app ) {
-    foreach( $app as $noti=>$tok ) {
-        $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'][$vendor][$noti]['email_text'][] = 'pdfnc_document';
-        $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'][$vendor][$noti]['email_html'][] = 'pdfnc_document';
-        $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'][$vendor][$noti]['attachment_tokens'][] = 'pdfnc_attachment';
-    }
-}

@@ -199,6 +199,26 @@ class pdfNcAttachmentHooks extends \Contao\Backend
         return false;                                                           // kein bekannter InsertTag => nicht zuständig!
     }
 
+    
+    //-----------------------------------------------------------------
+    //  HOOK: The initializeSystem hook is triggered right after the 
+    //        system initialization process is finished and before the 
+    //        request processing is started.
+    //-----------------------------------------------------------------
+    public function myInitializeSystem( )
+    {
+        /**
+         * Attachment-Token für alle Notifications hinzufügen
+         */
+        foreach( $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'] as $vendor=>$app ) {
+            foreach( $app as $noti=>$tok ) {
+                $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'][$vendor][$noti]['email_text'][] = 'pdfnc_document';
+                $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'][$vendor][$noti]['email_html'][] = 'pdfnc_document';
+                $GLOBALS['NOTIFICATION_CENTER']['NOTIFICATION_TYPE'][$vendor][$noti]['attachment_tokens'][] = 'pdfnc_attachment';
+            }
+        }
+    }
 
+    
     //-----------------------------------------------------------------
 }
