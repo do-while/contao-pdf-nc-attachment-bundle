@@ -3,7 +3,7 @@
 /**
  * Extension for Contao 4
  *
- * @copyright  Softleister 2018-2019
+ * @copyright  Softleister 2018-2021
  * @author     Softleister <info@softleister.de>
  * @package    contao-pdf-nc-attachment-bundle
  * @licence    LGPL
@@ -31,7 +31,7 @@ class Plugin implements BundlePluginInterface
     {
         return [
             BundleConfig::create( 'Softleister\PdfncattachmentBundle\SoftleisterPdfncattachmentBundle' )
-                ->setLoadAfter( ['Contao\CoreBundle\ContaoCoreBundle', 'notification_center'] )
+                ->setLoadAfter( ['Contao\CoreBundle\ContaoCoreBundle', 'notification_center', MarkocupicCalendarEventBookingBundle::class] )
         ];
     }
 }

@@ -149,15 +149,15 @@ class pdfNcAttachmentHooks extends \Contao\Backend
         $arrTokens['pdfnc_attachment'] = $arrTokens['pdfnc_document'] = '';
         $pdfdatei = $savepath . '/' . $filename . '.pdf';
 
+        //--- Create token for created file ---
+        $arrTokens['pdfnc_attachment'] = $pdfdatei;
+        $arrTokens['pdfnc_document'] = basename( $pdfdatei );
+
         if( pdfnc_helper::getPdfData( $arrPDF, $arrTokens, $pdfdatei ) ) {
 
             //--- Enter PDF file in the file manager ---
             $objFile = \Contao\Dbafs::addResource( $pdfdatei );
             \Contao\Dbafs::updateFolderHashes( $strUploadFolder );
-
-            //--- Create token for created file ---
-            $arrTokens['pdfnc_attachment'] = $pdfdatei;
-            $arrTokens['pdfnc_document'] = basename( $pdfdatei );
 
             //--- Entry in log ---
             \Contao\System::Log('PDF attachment "' . $filename . '.pdf" has been created', __METHOD__, TL_ACCESS);
@@ -199,7 +199,7 @@ class pdfNcAttachmentHooks extends \Contao\Backend
         return false;                                                           // kein bekannter InsertTag => nicht zuständig!
     }
 
-    
+
     //-----------------------------------------------------------------
     //  HOOK: The initializeSystem hook is triggered right after the 
     //        system initialization process is finished and before the 
@@ -219,6 +219,6 @@ class pdfNcAttachmentHooks extends \Contao\Backend
         }
     }
 
-    
+
     //-----------------------------------------------------------------
 }
