@@ -171,7 +171,8 @@ class pdfNcAttachmentHooks extends \Contao\Backend
                 \Contao\System::importStatic($callback[0])->{$callback[1]}( $pdfdatei, $arrPDF, $this );
             }
         }
-        return !isset( $arrTokens['do_not_send_notification'] ) && !isset( $arrTokens['form_do_not_send_notification'] );    // Notification may be sent
+        return (!isset( $arrTokens['do_not_send_notification'] ) || empty( $arrTokens['do_not_send_notification'] ) ) && 
+               (!isset( $arrTokens['form_do_not_send_notification'] ) || empty( $arrTokens['form_do_not_send_notification'] ) );    // Notification may be sent
     }
 
 
