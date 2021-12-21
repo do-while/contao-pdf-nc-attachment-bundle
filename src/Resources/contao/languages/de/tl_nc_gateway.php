@@ -58,4 +58,3 @@ $GLOBALS['TL_LANG']['tl_nc_gateway']['positions']  = array('Positionen', 'Defini
  * Legends
  */
 $GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_legend']     = 'PDF-Formular ausfüllen';
-$GLOBALS['TL_LANG']['tl_nc_gateway']['pdfnc_fontlegend'] = 'Eigene Fonts verwenden';

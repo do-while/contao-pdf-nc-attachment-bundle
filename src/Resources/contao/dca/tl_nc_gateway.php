@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_nc_gateway']['list']['operations']['positions'] = array (
 $GLOBALS['TL_DCA']['tl_nc_gateway']['palettes']['email'] .= ';{pdfnc_legend},pdfnc_on';
 
 // Subpalette hinzufügen
-$GLOBALS['TL_DCA']['tl_nc_gateway']['subpalettes']['pdfnc_on']      = 'pdfnc_vorlage,pdfnc_savepath,pdfnc_overwrite,pdfnc_useHomeDir,pdfnc_fileext,pdfnc_multiform,pdfnc_allpages,pdfnc_tokens,pdfnc_offset,pdfnc_textcolor,pdfnc_title,pdfnc_author,pdfnc_protect;{pdfnc_fontlegend:hide},pdfnc_font,pdfnc_fontb,pdfnc_fonti,pdfnc_fontbi';
+$GLOBALS['TL_DCA']['tl_nc_gateway']['subpalettes']['pdfnc_on']      = 'pdfnc_vorlage,pdfnc_savepath,pdfnc_overwrite,pdfnc_useHomeDir,pdfnc_fileext,pdfnc_multiform,pdfnc_allpages,pdfnc_tokens,pdfnc_offset,pdfnc_textcolor,pdfnc_title,pdfnc_author,pdfnc_protect,pdfnc_font,pdfnc_fontb,pdfnc_fonti,pdfnc_fontbi';
 $GLOBALS['TL_DCA']['tl_nc_gateway']['subpalettes']['pdfnc_protect'] = 'pdfnc_password,pdfnc_openpassword,pdfnc_protectflags';
 
 
