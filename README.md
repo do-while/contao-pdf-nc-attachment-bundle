@@ -26,8 +26,9 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
-* 2.8.0<br>Freigabedatum; 2021-08-25<br>1) Kompatibilität mit PHP 8<br>2) Unterstützung für eigene TTF- oder OTF-Fonts
-* 2.7.0<br>Freigabedatum; 2020-11-08<br>1) Dynamische Vorgabe-PDF per SimpleToken
+* 2.9.0<br>Freigabedatum: 2022-05-31<br>1) Textfarbe nicht mehr vorbesetzt = Standardfarbe aus den Gateway-Eigenschaften<br>2) 
+* 2.8.0<br>Freigabedatum: 2021-08-25<br>1) Kompatibilität mit PHP 8<br>2) Unterstützung für eigene TTF- oder OTF-Fonts
+* 2.7.0<br>Freigabedatum: 2020-11-08<br>1) Dynamische Vorgabe-PDF per SimpleToken
 * 2.6.3<br>Freigabedatum: 2020-08-05<br>1) Bugfix: Fehler bei Bild aus nicht auflösbarem SimpleToken<br>2) Die Bennung der Ausgabe-PDF kann jetzt auch ohne den Titel der Benachrichtigung erfolgen (siehe Hint)
 * 2.6.2<br>Freigabedatum: 2020-06-26<br>1) Bugfix: Bilder wurden nicht eingebunden, ab Contao 4.8.2
 * 2.6.1<br>Freigabedatum: 2020-06-25<br>1) InsertTags in PDF-Titel und -Autor möglich
@@ -49,4 +50,4 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 **Problem melden | *Report Problem*:**<br>per E-Mail | *via Email*: licence@softleister.de
 
 ___
-Softleister - 2021-08-25
+Softleister - 2022-05-31

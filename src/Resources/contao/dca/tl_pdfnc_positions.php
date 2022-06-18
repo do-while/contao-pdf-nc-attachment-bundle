@@ -288,7 +288,7 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
         'textcolor' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['textcolor'],
-            'default'                 => '000ac0',
+            'default'                 => '',
             'inputType'               => 'text',
             'eval'                    => array('maxlength'=>6, 'colorpicker'=>true, 'isHexColor'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50 wizard', 'style'=>'width:138px'),
             'sql'                     => "varchar(8) NOT NULL default ''"

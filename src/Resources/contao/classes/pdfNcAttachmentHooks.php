@@ -157,7 +157,7 @@ class pdfNcAttachmentHooks extends \Contao\Backend
 
             //--- Enter PDF file in the file manager ---
             $objFile = \Contao\Dbafs::addResource( $pdfdatei );
-            \Contao\Dbafs::updateFolderHashes( $strUploadFolder );
+            \Contao\Dbafs::updateFolderHashes(  $savepath );
 
             //--- Entry in log ---
             \Contao\System::Log('PDF attachment "' . $filename . '.pdf" has been created', __METHOD__, TL_ACCESS);

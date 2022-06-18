@@ -16,13 +16,13 @@
         "source": "https://github.com/do-while/contao-pdf-nc-attachment-bundle"
     },
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.4 || ^8.0",
         "contao/core-bundle": "~4.4",
-        "menatwork/contao-multicolumnwizard": "^3.3",
+        "menatwork/contao-multicolumnwizard-bundle": "^3.4",
         "terminal42/notification_center": "^1.4",
         "codefog/contao-haste":"^4.14.1",
-        "tecnickcom/tcpdf": "^6.2.22",
-        "setasign/fpdi-tcpdf": "^2.0"
+        "tecnickcom/tcpdf": "^6.4",
+        "setasign/fpdi": "^2.3"
     },
     "autoload": {
         "psr-4": {
