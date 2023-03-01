@@ -20,7 +20,7 @@
         "contao/core-bundle": "~4.4",
         "menatwork/contao-multicolumnwizard-bundle": "^3.4",
         "terminal42/notification_center": "^1.4",
-        "codefog/contao-haste":"^4.14.1",
+        "codefog/contao-haste":"^4.14.1 || ^5.0",
         "tecnickcom/tcpdf": "^6.4",
         "setasign/fpdi": "^2.3"
     },
