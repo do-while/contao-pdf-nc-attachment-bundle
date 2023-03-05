@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2021, Softleister
+ * @copyright  Copyright (c) 2018-2023, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    LGPL
  */
@@ -24,10 +24,19 @@ class pdfNcAttachmentHooks extends \Contao\Backend
     //-----------------------------------------------------------------
     public function execute($objMessage, &$arrTokens, $language, $objGatewayModel)
     {
+        if( class_exists( \Codefog\HasteBundle\StringParser::class ) ) {        // anderes Handling bei Haste 5.x
+            $hasteStringParser = new \Codefog\HasteBundle\StringParser();
+        }
+
         if( $objMessage->gateway_type !== 'email' ) return true;        // for gateway type "email" only
         if( $objGatewayModel->pdfnc_on != 1 ) return true;              // "Fill in PDF form" inactive
 
-        $filename = \Haste\Util\StringUtil::recursiveReplaceTokensAndTags( $objGatewayModel->pdfnc_fileext, $arrTokens );   // Filename-Erweiterung aus den Eigenschaften
+        if( class_exists( \Haste\Util\StringUtil::class ) ) {
+            $filename = \Haste\Util\StringUtil::recursiveReplaceTokensAndTags( $objGatewayModel->pdfnc_fileext, $arrTokens );   // Filename-Erweiterung aus den Eigenschaften
+        }
+        else {
+            $filename = $hasteStringParser->recursiveReplaceTokensAndTags( $objGatewayModel->pdfnc_fileext, $arrTokens );       // Filename-Erweiterung aus den Eigenschaften
+        }
         if( empty( $filename ) || in_array( substr($filename, 0, 1), ['-', '_']) ) {
             $filename = $objMessage->title . $filename;            
         }
@@ -36,14 +45,14 @@ class pdfNcAttachmentHooks extends \Contao\Backend
         //--- member directory? ---
         $savepath = \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_savepath)->path;
         if( $objGatewayModel->pdfnc_useHomeDir && FE_USER_LOGGED_IN ) {
-			$this->import('FrontendUser', 'User');
+            $this->import('FrontendUser', 'User');
 
-			if( $this->User->assignDir && $this->User->homeDir ) {
+            if( $this->User->assignDir && $this->User->homeDir ) {
                 $dir = \Contao\FilesModel::findByUuid($this->User->homeDir)->path;
                 if( is_dir( TL_ROOT . '/' . $dir ) ) {
-				    $savepath = $dir;                                   // Accept member directory
+                    $savepath = $dir;                                   // Accept member directory
                 }
-			}
+            }
         }
 
         if( file_exists(TL_ROOT . '/' . $savepath . '/' . $filename . '.pdf') ) {
