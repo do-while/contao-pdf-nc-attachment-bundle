@@ -3,7 +3,7 @@
 /**
  * pdf_nc_attachment extension for Notification Center and Contao Open Source CMS
  *
- * @copyright  Copyright (c) 2018-2020, Softleister
+ * @copyright  Copyright (c) 2018-2023, Softleister
  * @author     Hagen Klemp <info@softleister.de>
  * @licence    commercial
  */
@@ -27,7 +27,7 @@ $GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform']      = array('Text tr
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['textcolor']          = array('Overwrite text color', 'Leave the field blank if you do not want to overwrite the default text color for this item.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['fontsize']           = array('Text size', 'Font size of text in pt');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['published']          = array('Published', 'The position is inserted in PDF only when it is published');
-$GLOBALS['TL_LANG']['tl_pdfnc_positions']['textarea']           = array('Dimensions', 'Size of the box width x height in mm.');
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['textarea']           = array('Dimensions', 'Size of the box width x height in mm. If one value is specified as 0, it will be calculated proportionally.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['picture']            = array('Picture', 'Select your picture');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictype']            = array('Image data', 'Use an image from file or from a data stream.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictag']             = array('SimpleTag with image data', 'Define the SimpleToken that contains the image data.');
