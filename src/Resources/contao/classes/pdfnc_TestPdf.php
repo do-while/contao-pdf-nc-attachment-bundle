@@ -17,6 +17,8 @@ require_once( TL_ROOT . '/vendor/do-while/contao-pdf-nc-attachment-bundle/src/Re
 //-----------------------------------------------------------------
 class pdfnc_TestPdf extends \Contao\Backend
 {
+    static $testTokens = [];
+
     //-----------------------------------------------------------------------------------
     //  Konstruktor
     //-----------------------------------------------------------------------------------
@@ -126,7 +128,7 @@ class pdfnc_TestPdf extends \Contao\Backend
 
 
         //--- PDF-Datei erstellen ---
-        pdfnc_helper::getPdfData( $arrPDF, array(), '' );
+        pdfnc_helper::getPdfData( $arrPDF, self::$testTokens, '' );
     }
 
 
