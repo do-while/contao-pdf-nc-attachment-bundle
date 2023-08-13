@@ -29,8 +29,8 @@ $GLOBALS['TL_LANG']['tl_pdfnc_positions']['fontsize']           = array('Textgr�
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['published']          = array('Veröffentlicht', 'Die Position wird nur im PDF eingetragen, wenn sie veröffentlicht ist.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['textarea']           = array('Abmessungen', 'Größe des Rahmens Breite x Höhe in mm. Wird ein Wert mit 0 angegeben, wird er proportional errechnet.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['picture']            = array('Bild', 'Wählen Sie das Bild aus');
-$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictype']            = array('Bilddaten', 'Bild aus Datei oder aus einem Data-Stream verwenden.');
-$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictag']             = array('SimpleTag mit Bilddaten', 'Definieren Sie den SimpleToken, der die Bilddaten enthält.');
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictype']            = array('Bildquelle', 'Bild aus Datei oder aus einem Data-Stream verwenden.');
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictag']             = array('Bilddaten', 'Definieren Sie den SimpleToken, der die Bilddaten enthält oder eine UUID.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['qrsize']             = array('Größe des Barcodes', 'Wählen Sie die Größe aus.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['noblanks']           = array('Keine automatischen Leerzeichen', 'Unterdrückt das automatische Einfügen von Leerzeichen zwischen den Feldern.');
 
@@ -47,6 +47,7 @@ $GLOBALS['TL_LANG']['tl_pdfnc_positions']['qrcode']               = 'Barcode';
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['file']                 = 'Datei';
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['upload']               = 'Upload-Datei';
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['data']                 = 'Data-Stream';
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['uuid']                 = 'UUID der Datei';
 
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['seite']                = 'Seite';
 

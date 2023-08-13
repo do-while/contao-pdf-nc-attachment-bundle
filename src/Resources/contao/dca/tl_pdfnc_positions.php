@@ -108,7 +108,7 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
     // Palettes
     'palettes' => array
     (
-		'__selector__'                => array('type','pictype'),
+        '__selector__'                => array('type','pictype'),
         'default'                     => '{type_legend},type;'
                                         .'{publish_legend},published',
 
@@ -128,6 +128,11 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
                                         .'{publish_legend},published',
 
         'picdata'                     => '{type_legend},type;'
+                                        .'{attr_legend},page,bedingung,posxy,textarea;'
+                                        .'{img_legend},pictype,pictag,size;'
+                                        .'{publish_legend},published',
+
+        'picuuid'                     => '{type_legend},type;'
                                         .'{attr_legend},page,bedingung,posxy,textarea;'
                                         .'{img_legend},pictype,pictag,size;'
                                         .'{publish_legend},published',
@@ -302,21 +307,21 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
             'eval'                    => array('multiple'=>true, 'tl_class'=>'clr w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
-		'texttransform' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform'],
-			'inputType'               => 'select',
-			'options'                 => array('uppercase', 'lowercase', 'capitalize', 'none'),
-			'reference'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform_'],
-			'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
-			'sql'                     => "varchar(32) NOT NULL default ''"
-		),
+        'texttransform' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform'],
+            'inputType'               => 'select',
+            'options'                 => array('uppercase', 'lowercase', 'capitalize', 'none'),
+            'reference'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['texttransform_'],
+            'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(32) NOT NULL default ''"
+        ),
         'pictype' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictype'],
             'default'                 => 'file',
             'inputType'               => 'select',
-            'options'                 => array('file', 'upload', 'data'),
+            'options'                 => array('file', 'upload', 'data', 'uuid'),
             'reference'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions'],
             'eval'                    => array('tl_class'=>'w50', 'submitOnChange'=>true),
             'sql'                     => "varchar(8) NOT NULL default 'file'"

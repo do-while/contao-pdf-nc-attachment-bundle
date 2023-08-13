@@ -26,6 +26,7 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 
 
 ## Version
+* 2.9.0<br>Freigabedatum: 2023-08-13<br>1) neue Option für Bilddaten: Übergabe einer UUID
 * 2.8.12<br>Freigabedatum: 2023-04-10<br>1) Bereitstellung von einzelnen Datei-Tokens für FineUploader<br>2) Probleme bei Bilddateien mit Blanks im Dateinamen beseitigt
 * 2.8.9<br>Freigabedatum: 2022-05-31<br>1) Textfarbe nicht mehr vorbesetzt = Standardfarbe aus den Gateway-Eigenschaften
 * 2.8.0<br>Freigabedatum: 2021-08-25<br>1) Kompatibilität mit PHP 8<br>2) Unterstützung für eigene TTF- oder OTF-Fonts
@@ -51,4 +52,4 @@ composer require do-while/contao-pdf-nc-attachment-bundle
 **Problem melden | *Report Problem*:**<br>per E-Mail | *via Email*: licence@softleister.de
 
 ___
-Softleister - 2022-05-31
+Softleister - 2023-08-13

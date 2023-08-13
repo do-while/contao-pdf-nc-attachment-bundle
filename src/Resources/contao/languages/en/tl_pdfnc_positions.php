@@ -29,8 +29,8 @@ $GLOBALS['TL_LANG']['tl_pdfnc_positions']['fontsize']           = array('Text si
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['published']          = array('Published', 'The position is inserted in PDF only when it is published');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['textarea']           = array('Dimensions', 'Size of the box width x height in mm. If one value is specified as 0, it will be calculated proportionally.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['picture']            = array('Picture', 'Select your picture');
-$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictype']            = array('Image data', 'Use an image from file or from a data stream.');
-$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictag']             = array('SimpleTag with image data', 'Define the SimpleToken that contains the image data.');
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictype']            = array('Image source', 'Use an image from file or from a data stream.');
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['pictag']             = array('Image data', 'Define the SimpleToken that contains the image data or a UUID.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['qrsize']             = array('Size of bar code', 'Select the size.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['noblanks']           = array('No automatic spaces', 'Suppresses the automatic insertion of spaces between fields.');
 
@@ -47,6 +47,7 @@ $GLOBALS['TL_LANG']['tl_pdfnc_positions']['qrcode']               = 'Bar code';
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['file']                 = 'File';
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['upload']               = 'Upload file';
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['data']                 = 'Data stream';
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['uuid']                 = 'UUID of the file';
 
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['seite']                = 'Page';
 
