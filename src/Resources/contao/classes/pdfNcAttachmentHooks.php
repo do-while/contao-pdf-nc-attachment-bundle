@@ -108,10 +108,10 @@ class pdfNcAttachmentHooks extends \Contao\Backend
                          'author'        => \Contao\Controller::replaceInsertTags( $objGatewayModel->pdfnc_author, false ),
                          'tokenlist'     => $objGatewayModel->pdfnc_tokens,
                          'arrTokens'     => $arrTokens,
-                         'R'             => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_font)->path,
-                         'B'             => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_fontb)->path,
-                         'I'             => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_fonti)->path,
-                         'IB'            => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_fontbi)->path,
+                         'R'             => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_font)->path ?? '',
+                         'B'             => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_fontb)->path ?? '',
+                         'I'             => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_fonti)->path ?? '',
+                         'IB'            => \Contao\FilesModel::findByUuid($objGatewayModel->pdfnc_fontbi)->path ?? '',
                        );
         if( !is_array($arrPDF['protectflags']) ) $arrPDF['protectflags'] = array( $arrPDF['protectflags'] );
 
