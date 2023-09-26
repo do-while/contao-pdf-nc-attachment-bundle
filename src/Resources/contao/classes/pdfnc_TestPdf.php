@@ -51,7 +51,7 @@ class pdfnc_TestPdf extends \Contao\Backend
         // 1. template PDF from gateway settings
         $objVorlage = \Contao\FilesModel::findByUuid( $objGate->pdfnc_vorlage );
         if( $objVorlage !== null ) {
-            $vorlage = $objVorlage->path;
+            $vorlage = $objVorlage->path ?? '';
         }
 
         // 2. template PDF from SimpleTokens ##filename_template_pdf## or ##form_filename_template_pdf##
@@ -60,7 +60,7 @@ class pdfnc_TestPdf extends \Contao\Backend
         if( \Contao\Validator::isUuid( $vorlage ) ) {                      // IF( vorlage == UUID )
             $objVorlage = \Contao\FilesModel::findByUuid( $vorlage );
             if( $objVorlage !== null ) {
-                $vorlage = $objVorlage->path;
+                $vorlage = $objVorlage->path ?? '';
             }
         }
 
@@ -68,7 +68,7 @@ class pdfnc_TestPdf extends \Contao\Backend
                          'gatetitle'     => $objGate->title,
                          'filename'      => \Contao\StringUtil::standardize( \Contao\StringUtil::restoreBasicEntities($objGate->title) ),
                          'vorlage'       => trim( $vorlage, '/' ),
-                         'savepath'      => \Contao\FilesModel::findByUuid($objGate->pdfnc_savepath)->path,
+                         'savepath'      => \Contao\FilesModel::findByUuid($objGate->pdfnc_savepath)->path ?? 'files',
                          'protect'       => $objGate->pdfnc_protect,
                          'openpassword'  => \Contao\Controller::replaceInsertTags( pdfnc_helper::decrypt($objGate->pdfnc_openpassword ) ),
                          'protectflags'  => \Contao\StringUtil::deserialize($objGate->pdfnc_protectflags),
@@ -80,10 +80,10 @@ class pdfnc_TestPdf extends \Contao\Backend
                          'title'         => $objGate->pdfnc_title,
                          'author'        => $objGate->pdfnc_author,
                          'tokenlist'     => $objGate->pdfnc_tokens,
-                         'R'             => \Contao\FilesModel::findByUuid($objGate->pdfnc_font)->path,
-                         'B'             => \Contao\FilesModel::findByUuid($objGate->pdfnc_fontb)->path,
-                         'I'             => \Contao\FilesModel::findByUuid($objGate->pdfnc_fonti)->path,
-                         'IB'            => \Contao\FilesModel::findByUuid($objGate->pdfnc_fontbi)->path,
+                         'R'             => \Contao\FilesModel::findByUuid($objGate->pdfnc_font)->path ?? '',
+                         'B'             => \Contao\FilesModel::findByUuid($objGate->pdfnc_fontb)->path ?? '',
+                         'I'             => \Contao\FilesModel::findByUuid($objGate->pdfnc_fonti)->path ?? '',
+                         'IB'            => \Contao\FilesModel::findByUuid($objGate->pdfnc_fontbi)->path ?? '',
                        );
 
         unset( $arrFields );
