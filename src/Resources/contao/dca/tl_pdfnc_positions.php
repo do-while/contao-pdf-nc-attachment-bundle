@@ -87,14 +87,19 @@ $GLOBALS['TL_DCA']['tl_pdfnc_positions'] = array
                 'label'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.gif',
-                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
+                'attributes'          => 'onclick="if(!confirm(\'' . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? null) . '\'))return false;Backend.getScrollOffset()"'
             ),
             'toggle' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['toggle'],
-                'icon'                => 'visible.gif',
-                'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-                'button_callback'     => array('tl_pdfnc_positions', 'toggleIcon')
+                'label'               	=> &$GLOBALS['TL_LANG']['tl_pdfnc_positions']['toggle'],
+                'attributes'            => 'onclick="Backend.getScrollOffset();"',
+                'haste_ajax_operation'  => array (
+                                                'field'		=> 	'published',
+                                                'options'	=> 	array (
+                                                                    array('value'=>'', 'icon'=>'visible_.svg'),
+                                                                    array('value'=>'1', 'icon'=>'visible.svg')
+                                                                )
+                                            )
             ),
             'show' => array
             (
@@ -424,54 +429,6 @@ class tl_pdfnc_positions extends \Contao\Backend
 
         $result .= '</tr></table>';
         return $result;
-    }
-
-    //-----------------------------------------------------------------
-    //    Veröffentlichung umschalten
-    //-----------------------------------------------------------------
-    public function toggleIcon( $row, $href, $label, $title, $icon, $attributes )
-    {
-        if( strlen(\Contao\Input::get('tid')) ) {
-            $this->toggleVisibility( \Contao\Input::get('tid'), (\Contao\Input::get('state') == 1) );
-            $this->redirect( $this->getReferer() );
-        }
-
-        $href .= '&amp;tid='.$row['id'].'&amp;state='.($row['published'] ? '' : 1);
-
-        if( !$row['published'] ) {
-            $icon = 'invisible.gif';
-        }
-
-        return '<a href="' . $this->addToUrl($href) . '" title="' . \Contao\StringUtil::specialchars($title) . '"' . $attributes . '>' . \Contao\Image::getHtml($icon, $label) . '</a> ';
-    }
-
-
-    //-----------------------------------------------------------------
-    //    Veröffentlichung umschalten
-    //-----------------------------------------------------------------
-    public function toggleVisibility( $intId, $blnVisible )
-    {
-        $objVersions = new \Contao\Versions( 'tl_pdfnc_positions', $intId );
-        $objVersions->initialize( );
-
-        // Trigger the save_callback
-        if( is_array($GLOBALS['TL_DCA']['tl_pdfnc_positions']['fields']['published']['save_callback']) ) {
-            foreach( $GLOBALS['TL_DCA']['tl_pdfnc_positions']['fields']['published']['save_callback'] as $callback ) {
-                if( is_array( $callback ) ) {
-                    $this->import( $callback[0] );
-                    $blnVisible = $this->$callback[0]->$callback[1]( $blnVisible, $this );
-                }
-                else if( is_callable( $callback ) ) {
-                    $blnVisible = $callback( $blnVisible, $this );
-                }
-            }
-        }
-
-        // Update the database
-        $this->Database->prepare("UPDATE tl_pdfnc_positions SET tstamp=" . time() . ", published='" . $blnVisible . "' WHERE id=?")->execute( $intId );
-
-        $objVersions->create();
-        \Contao\System::log( 'A new version of record "tl_pdfnc_positions.id=' . $intId . '" has been created' . $this->getParentEntries('tl_pdfnc_positions', $intId ), __METHOD__, TL_GENERAL);
     }
 
 

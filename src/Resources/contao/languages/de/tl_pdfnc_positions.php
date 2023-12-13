@@ -19,7 +19,7 @@ $GLOBALS['TL_LANG']['tl_pdfnc_positions']['textitem_feld']      = array('SimpleT
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['bedingung']          = array('Bedingung ', 'Das Element wird nur ausgegeben, wenn die Bedingung erfüllt ist. Bei Angabe eines Tokens muss der Token existieren und nicht leer sein. Es können auch einfache Vergleiche mit == oder != verwendet werden, z.B. form_question==yes');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['textitem_bedingung'] = array('Bedingung ', 'Der Text wird nur ausgegeben, wenn die Bedingung erfüllt ist. Bei Angabe eines Tokens muss der Token existieren und nicht leer sein. Es können auch einfache Vergleiche mit == oder != verwendet werden, z.B. form_question==yes');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['page']               = array('Seite im PDF', 'Seite, auf der die Position eingefügt werden soll');
-$GLOBALS['TL_LANG']['tl_pdfnc_positions']['posxy']              = array('Position in X und Y', 'Position im mm von der oberen, linken Ecke');
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['posxy']              = array('Position in X und Y', 'Absolute Position im mm von der oberen, linken Ecke, oder mit + oder - relativ zur vorigen Position');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['borderright']        = array('Rechter Rand', 'Optionelle Randeinstellung, als Umbruchgrenze bei langen Texten');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['align']              = array('Ausrichtung', 'Ausrichtung bezogen auf die Position.');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['fontstyle']          = array('Textattribute', 'Attribute Fett oder Kursiv für die eingefügten Texte');

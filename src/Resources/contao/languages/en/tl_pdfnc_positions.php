@@ -19,7 +19,7 @@ $GLOBALS['TL_LANG']['tl_pdfnc_positions']['textitem_feld']      = array('Field n
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['bedingung']          = array('Condition ', 'The element is only output if the condition is fulfilled. If a token is specified, the token must exist and not be empty. You can also use simple comparisons with == or !=, e.g. form_question==yes');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['textitem_bedingung'] = array('Condition ', 'The text is only output if the condition is fulfilled. If a token is specified, the token must exist and not be empty. You can also use simple comparisons with == or !=, e.g. form_question==yes');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['page']               = array('Page in PDF', 'Page on which the item is to be inserted');
-$GLOBALS['TL_LANG']['tl_pdfnc_positions']['posxy']              = array('Position in X and Y', 'Position im mm from the upper left corner');
+$GLOBALS['TL_LANG']['tl_pdfnc_positions']['posxy']              = array('Position in X and Y', 'Absolute position in mm from the top left corner, or with + or - relative to the previous position');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['borderright']        = array('Border right', 'Optional margin setting for wordwrap of long texts');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['align']              = array('Orientation', 'Orientation based on the position');
 $GLOBALS['TL_LANG']['tl_pdfnc_positions']['fontstyle']          = array('Text attributes', 'Attributes bold or italic for the inserted text');
